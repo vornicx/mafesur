@@ -1,4 +1,5 @@
 import { generatedVehicles } from './catalog.generated.js';
+import { normalizeVehicle } from './catalog-normalize.js';
 
 export const business = {
   name: 'Automóviles Mafesur',
@@ -14,7 +15,7 @@ export const business = {
   caption: 'Venta de vehículos, taller multimarca y alquiler en Écija.'
 };
 
-export const vehicles = generatedVehicles;
+export const vehicles = generatedVehicles.map(normalizeVehicle);
 
 export const homeGallery = [
   { src: '/assets/facade-current.webp', alt: 'Fachada actual de Automóviles Mafesur', label: 'Instalaciones' },
