@@ -1,15 +1,17 @@
-/* Mafesur v4.1 — interaction and mobile conversion layer */
+/* Mafesur v4.2 — extreme polish, bespoke page signatures and mobile conversion */
 :root{--dock-h:70px}
 html.lightbox-open,body.lightbox-open{overflow:hidden}
 body{padding-bottom:0}
 
 :focus-visible{outline:2px solid var(--blue);outline-offset:4px}
 .button:focus-visible,.menu-toggle:focus-visible,.mobile-nav-close:focus-visible{outline-offset:2px}
+.site-header{transition:height .28s var(--ease),border-color .28s,box-shadow .28s,transform .34s var(--ease)}
+.site-header.is-hidden{transform:translateY(-105%)}
 
 @media(hover:hover) and (pointer:fine){
   .service-card,.vehicle-card,.rental-card,.vehicle-preview-card{transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s var(--ease)}
   .service-card:hover,.vehicle-card:hover,.rental-card:hover,.vehicle-preview-card:hover{transform:translateY(-4px);box-shadow:0 24px 56px rgba(13,23,38,.11);border-color:#c9c3b7}
-  .service-card img,.vehicle-card-media img,.vehicle-preview-card img,.editorial-image img,.visual-card img,.contact-visual img{will-change:transform}
+  .service-card img,.vehicle-card-media img,.vehicle-preview-card img,.editorial-image img,.visual-card img,.contact-visual img,.signature-media img{will-change:transform}
   .media-depth{transform:translate3d(0,var(--media-shift,0),0) scale(1.035);transition:transform .16s linear}
   .magnetic{transform:translate3d(var(--mag-x,0),var(--mag-y,0),0)}
 }
@@ -18,6 +20,70 @@ body{padding-bottom:0}
 .hero-main-card::before{content:"";position:absolute;z-index:3;inset:10px;border:1px solid rgba(255,255,255,.26);pointer-events:none}
 .hero-side-card,.hero-side-tall{box-shadow:0 12px 32px rgba(13,23,38,.08)}
 .vehicle-card-media::after{content:"";position:absolute;inset:auto 0 0;height:1px;background:linear-gradient(90deg,transparent,rgba(216,198,37,.75),transparent);opacity:.7}
+.image-fallback .vehicle-card-media::before,.image-fallback.gallery-panel::before{content:"Imagen pendiente de actualizar";position:absolute;z-index:3;left:10px;bottom:10px;padding:7px 9px;background:rgba(13,23,38,.82);color:#fff;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase}
+
+/* Page-specific direction */
+body[data-page="taller"] .split-grid{grid-template-columns:1.08fr .92fr;gap:34px}
+body[data-page="taller"] .visual-card{min-height:760px}
+body[data-page="taller"] .visual-overlay{background:linear-gradient(180deg,rgba(13,23,38,.72),rgba(13,23,38,.9));border-top:1px solid rgba(255,255,255,.18)}
+body[data-page="taller"] .copy-stack>.surface-card:first-child{padding-top:42px;border-top:3px solid var(--ink)}
+body[data-page="alquiler"] .split-grid{grid-template-columns:.9fr 1.1fr;gap:36px}
+body[data-page="alquiler"] .visual-card{min-height:720px}
+body[data-page="alquiler"] .visual-card::after{content:"LIBERTAD / TRABAJO / VIAJE";position:absolute;top:22px;right:18px;writing-mode:vertical-rl;color:rgba(255,255,255,.68);font-size:.55rem;letter-spacing:.24em;z-index:2}
+body[data-page="nosotros"] .about-quote{border-top:3px solid var(--ink)}
+body[data-page="vehiculo"] .detail-panel{border-top:3px solid var(--ink)}
+
+/* Bespoke editorial signature sections */
+.signature-section{padding:118px 0;background:#f8f6f1;border-top:1px solid var(--line)}
+.signature-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:start}
+.signature-head{display:grid;grid-template-columns:1fr minmax(280px,.55fr);gap:48px;align-items:end;margin-bottom:48px}
+.signature-head h2,.signature-copy h2{font-family:var(--serif);font-weight:400;letter-spacing:-.05em;line-height:.94;margin:14px 0 0;font-size:clamp(2.7rem,5.2vw,5rem)}
+.signature-head>p,.signature-copy>p{font-size:1rem;line-height:1.82;color:var(--muted)}
+.signature-copy>p{margin-top:20px;max-width:620px}
+.signature-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+
+.vehicle-assurance{background:var(--ink);color:#fff;border-top-color:rgba(255,255,255,.12)}
+.vehicle-assurance .kicker{color:var(--accent)}
+.vehicle-assurance .signature-copy>p{color:rgba(255,255,255,.64)}
+.vehicle-assurance .button.primary{background:#fff;color:var(--ink);box-shadow:none}
+.vehicle-assurance .button.secondary{border-color:rgba(255,255,255,.3);color:#fff}
+.assurance-list{display:grid;border-top:1px solid rgba(255,255,255,.16)}
+.assurance-list>div{display:grid;grid-template-columns:56px 150px 1fr;gap:16px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.14);align-items:start}
+.assurance-list span{font-size:.64rem;letter-spacing:.15em;color:var(--accent)}
+.assurance-list strong{font-family:var(--serif);font-weight:400;font-size:1.35rem;letter-spacing:-.03em}
+.assurance-list p{font-size:.86rem;line-height:1.65;color:rgba(255,255,255,.62)}
+
+.workshop-signature{background:#e9e6de;color:var(--ink)}
+.workshop-process{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #bdb8ac;border-bottom:1px solid #bdb8ac;margin-bottom:34px}
+.workshop-process article{min-height:260px;padding:28px 28px 30px 0}
+.workshop-process article+article{padding-left:28px;border-left:1px solid #bdb8ac}
+.workshop-process span{display:block;font-size:.65rem;letter-spacing:.15em;color:var(--blue);font-weight:750}
+.workshop-process h3{font-family:var(--serif);font-weight:400;font-size:2rem;letter-spacing:-.04em;margin:64px 0 10px}
+.workshop-process p{font-size:.9rem;line-height:1.72;color:var(--muted)}
+.signature-media{position:relative;overflow:hidden;min-height:520px;background:#d7dde2}
+.signature-media img{width:100%;height:100%;object-fit:cover}
+.signature-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,15,28,.74))}
+.signature-media-caption{position:absolute;z-index:2;left:28px;right:28px;bottom:26px;color:#fff;display:flex;justify-content:space-between;gap:24px;align-items:end}
+.signature-media-caption span{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+.signature-media-caption strong{font-family:var(--serif);font-weight:400;font-size:1.8rem;letter-spacing:-.035em;max-width:560px;text-align:right}
+
+.rental-signature{background:linear-gradient(135deg,#0c1c35 0%,#102a51 100%);color:#fff;border-top:0}
+.rental-signature-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:52px;align-items:center}
+.rental-signature .signature-media{min-height:650px}
+.rental-signature .signature-media::after{background:linear-gradient(180deg,rgba(9,22,42,.04),rgba(9,22,42,.4))}
+.rental-signature .kicker{color:var(--accent)}
+.rental-signature .signature-copy>p{color:rgba(255,255,255,.68)}
+.rental-signature .button.primary{background:#fff;color:var(--ink);box-shadow:none}
+.rental-use-list{margin-top:32px;border-top:1px solid rgba(255,255,255,.18)}
+.rental-use-list>div{display:flex;justify-content:space-between;gap:22px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.16)}
+.rental-use-list strong{font-family:var(--serif);font-size:1.28rem;font-weight:400}
+.rental-use-list span{font-size:.82rem;color:rgba(255,255,255,.62);text-align:right}
+
+.legacy-signature{background:#efece5;overflow:hidden}
+.legacy-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.legacy-year{font-family:var(--serif);font-size:clamp(7rem,18vw,15rem);line-height:.72;letter-spacing:-.08em;color:#d8d3c8;transform:translateX(-.04em)}
+.legacy-rule{display:flex;gap:0;flex-wrap:wrap;margin-top:32px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.legacy-rule span{padding:14px 18px 14px 0;margin-right:18px;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 
 /* Vehicle image viewer */
 .media-lightbox{position:fixed;z-index:120;inset:0;display:grid;grid-template-rows:auto 1fr auto;background:rgba(7,13,23,.97);color:#fff;opacity:0;pointer-events:none;transition:opacity .28s var(--ease)}
@@ -40,6 +106,20 @@ body{padding-bottom:0}
 
 /* Mobile quick actions */
 .mobile-action-dock{display:none}
+@media(max-width:980px){
+  body[data-page="taller"] .split-grid,body[data-page="alquiler"] .split-grid,.signature-grid,.rental-signature-grid,.legacy-grid{grid-template-columns:1fr}
+  body[data-page="taller"] .visual-card,body[data-page="alquiler"] .visual-card{min-height:560px}
+  .signature-head{grid-template-columns:1fr;gap:18px}
+  .workshop-process{grid-template-columns:1fr}
+  .workshop-process article{min-height:auto;padding:24px 0}
+  .workshop-process article+article{padding-left:0;border-left:0;border-top:1px solid #bdb8ac}
+  .workshop-process h3{margin:24px 0 8px}
+  .signature-media-caption{flex-direction:column;align-items:flex-start}
+  .signature-media-caption strong{text-align:left}
+  .rental-signature .signature-media{min-height:520px}
+  .legacy-year{font-size:clamp(6.5rem,25vw,11rem)}
+}
+
 @media(max-width:820px){
   body.has-mobile-dock:not(.nav-open){padding-bottom:calc(var(--dock-h) + env(safe-area-inset-bottom))}
   .mobile-action-dock{position:fixed;z-index:76;left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom));height:var(--dock-h);display:grid;grid-template-columns:1fr 1.35fr;gap:7px;padding:7px;background:rgba(243,241,235,.94);border:1px solid rgba(13,23,38,.12);box-shadow:0 18px 52px rgba(13,23,38,.18);backdrop-filter:blur(18px);transform:translateY(120%);opacity:0;transition:transform .42s var(--ease),opacity .3s var(--ease)}
@@ -55,14 +135,29 @@ body{padding-bottom:0}
   .media-lightbox-prev{left:calc(50% - 54px)}.media-lightbox-next{right:calc(50% - 54px)}
   .media-lightbox-bottom{display:none}
   .gallery-main::after{content:"Toca para ampliar"}
+  .signature-section{padding:86px 0}
+  .signature-head h2,.signature-copy h2{font-size:clamp(2.4rem,11vw,3.6rem)}
+  .assurance-list>div{grid-template-columns:42px 1fr;gap:8px 14px}
+  .assurance-list p{grid-column:2}
+  body[data-page="taller"] .visual-card,body[data-page="alquiler"] .visual-card{min-height:430px}
+  .rental-signature .signature-media,.signature-media{min-height:420px}
 }
 
 @media(max-width:520px){
   .mobile-action-dock{left:8px;right:8px;bottom:calc(6px + env(safe-area-inset-bottom))}
   .mobile-action{font-size:.74rem}
+  .signature-section{padding:72px 0}
+  .signature-media{min-height:320px}
+  .signature-media-caption{left:16px;right:16px;bottom:16px}
+  .signature-media-caption strong{font-size:1.35rem}
+  .rental-use-list>div{display:grid;gap:5px}
+  .rental-use-list span{text-align:left}
+  .legacy-year{font-size:29vw}
+  .legacy-rule{display:grid}
+  .legacy-rule span{margin:0;border-bottom:1px solid var(--line)}
 }
 
 @media(prefers-reduced-motion:reduce){
-  .media-lightbox,.media-lightbox-image,.mobile-action-dock,.service-card,.vehicle-card,.rental-card,.vehicle-preview-card{transition:none!important}
+  .media-lightbox,.media-lightbox-image,.mobile-action-dock,.service-card,.vehicle-card,.rental-card,.vehicle-preview-card,.site-header{transition:none!important}
   .media-depth,.magnetic{transform:none!important}
 }
