@@ -5,22 +5,31 @@ Rediseño integral de Automóviles Mafesur orientado a una presencia automotriz 
 ## Experiencia
 
 - Home editorial de concesionario y taller
-- Exposición de vehículos con filtros
-- Fichas individuales con galería, especificaciones y contacto directo
-- Taller multimarca y solicitud de cita
+- Exposición construida desde el inventario público actual de Mafesur
+- Filtros por búsqueda, marca, cambio y tipo de vehículo
+- Fichas individuales con galería local completa, especificaciones y contacto directo
+- Visor fotográfico fullscreen con navegación y swipe móvil
+- Taller multimarca con experiencia y flujo propios
 - Alquiler de turismos, industriales, combi y autocaravanas
 - Tarifas de autocaravanas
 - Historia de Mafesur
 - Contacto y ubicación
 - Centro de gestión conceptual para inventario y solicitudes
-- Diseño móvil específico, con navegación off-canvas aislada del contenido
-- `prefers-reduced-motion` y motion sobrio
+- Diseño móvil específico con navegación off-canvas y acciones contextuales
+- Motion sobrio y `prefers-reduced-motion`
 
-## Assets
+## Inventario y assets
 
-El sitio no hotlinkea imágenes en runtime. `npm run build` materializa la biblioteca visual oficial en `src/assets`, la optimiza a WebP y genera `dist/`; a partir de ahí la web sirve todas las fotografías y el logotipo desde su propio `/assets`.
+La producción no hotlinkea imágenes. Durante `npm run build`, el proyecto consulta la API pública de WooCommerce de Mafesur, deduplica el inventario publicado, genera el módulo estático de catálogo y descarga las fotografías oficiales de cada unidad al propio build.
 
-Si el proyecto ya contiene los WebP locales, el sincronizador los conserva y el build funciona sobre esa biblioteca existente.
+Las imágenes se optimizan a WebP y se sirven desde `/assets`. El navegador no necesita consultar la web original de Mafesur para renderizar el catálogo ni sus galerías.
+
+El build incorpora hard gates que comprueban:
+
+- sintaxis de los módulos JavaScript
+- integridad de todos los assets referenciados
+- ausencia de dependencias runtime a imágenes remotas
+- un mínimo de 30 vehículos cuando se genera el catálogo vivo
 
 ## Desarrollo
 
@@ -32,7 +41,7 @@ npm run dev
 
 Abrir `http://localhost:4173`.
 
-Para volver a sincronizar la biblioteca visual oficial:
+Para volver a sincronizar inventario e imágenes:
 
 ```bash
 npm run sync-assets
@@ -40,4 +49,4 @@ npm run sync-assets
 
 ## Estado
 
-La web pública es una propuesta comercial de alta fidelidad. La selección de vehículos del prototipo no es una sincronización en tiempo real del inventario. Formularios y centro de gestión muestran la experiencia objetivo; una entrega operativa conectaría inventario, CRM, citas, autenticación y comunicaciones reales.
+La experiencia pública funciona como flagship comercial de alta fidelidad. El inventario y sus fotografías se materializan desde la fuente pública de Mafesur en cada build. Los formularios y el centro de gestión muestran la experiencia objetivo; una entrega operativa conectaría CRM, citas, autenticación y comunicaciones reales.
