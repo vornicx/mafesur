@@ -1,5 +1,13 @@
 import { vehicles } from './data.js';
 
+let activeSegment = '';
+
+function vehicleFromCard(card) {
+  const link = card.querySelector('a[href*="/vehiculo/"]');
+  const id = new URL(link?.href || location.href).searchParams.get('id');
+  return vehicles.find(item => item.id === id);
+}
+
 function formatPriceLabels(root = document) {
   root.querySelectorAll('.price').forEach(node => {
     const raw = node.textContent.replace(/\s/g, '').toLowerCase();
@@ -17,9 +25,7 @@ function formatPriceLabels(root = document) {
 function addVehicleMediaMetadata() {
   document.querySelectorAll('.vehicle-card').forEach(card => {
     if (card.dataset.mediaEnhanced) return;
-    const link = card.querySelector('a[href*="/vehiculo/"]');
-    const id = new URL(link?.href || location.href).searchParams.get('id');
-    const vehicle = vehicles.find(item => item.id === id);
+    const vehicle = vehicleFromCard(card);
     const media = card.querySelector('.vehicle-card-media');
     if (!vehicle || !media) return;
     card.dataset.mediaEnhanced = '1';
@@ -32,12 +38,44 @@ function addVehicleMediaMetadata() {
   });
 }
 
-function initCatalogueObserver() {
-  if (!document.querySelector('[data-vehicle-grid]')) return;
+function applySegmentFilter() {
   const grid = document.querySelector('[data-vehicle-grid]');
+  const count = document.querySelector('[data-count]');
+  if (!grid) return;
+  let visible = 0;
+  grid.querySelectorAll('.vehicle-card').forEach(card => {
+    const vehicle = vehicleFromCard(card);
+    const show = !activeSegment || vehicle?.segment === activeSegment || (!vehicle?.segment && activeSegment === 'Ocasión');
+    card.hidden = !show;
+    if (show) visible += 1;
+  });
+  if (count) count.textContent = activeSegment ? `${visible} vehículos · ${activeSegment}` : `${visible} vehículos mostrados`;
+}
+
+function initSegmentFilter() {
+  const controls = document.querySelector('.catalog-controls');
+  if (!controls || controls.querySelector('[data-segment-filter]')) return;
+  const order = ['SUV', 'Ocasión', 'Industrial', 'Berlina', 'Autocaravana'];
+  const segments = [...new Set(vehicles.map(vehicle => vehicle.segment || 'Ocasión'))]
+    .sort((a, b) => (order.indexOf(a) < 0 ? 99 : order.indexOf(a)) - (order.indexOf(b) < 0 ? 99 : order.indexOf(b)));
+  const select = document.createElement('select');
+  select.dataset.segmentFilter = '';
+  select.setAttribute('aria-label', 'Filtrar por tipo de vehículo');
+  select.innerHTML = `<option value="">Cualquier tipo</option>${segments.map(segment => `<option value="${segment}">${segment}</option>`).join('')}`;
+  controls.appendChild(select);
+  select.addEventListener('change', () => {
+    activeSegment = select.value;
+    applySegmentFilter();
+  });
+}
+
+function initCatalogueObserver() {
+  const grid = document.querySelector('[data-vehicle-grid]');
+  if (!grid) return;
   const update = () => {
     formatPriceLabels(grid);
     addVehicleMediaMetadata();
+    applySegmentFilter();
   };
   update();
   const observer = new MutationObserver(update);
@@ -50,8 +88,8 @@ function initCatalogueIntro() {
   const command = document.createElement('div');
   command.className = 'catalogue-command';
   command.innerHTML = `
-    <div><span>Inventario actual</span><strong>${vehicles.length} vehículos en exposición</strong></div>
-    <div class="catalogue-command-note">Fotografías y datos reconstruidos desde el inventario público de Mafesur en cada build.</div>`;
+    <div><span>Exposición actual</span><strong>${vehicles.length} vehículos publicados</strong></div>
+    <div class="catalogue-command-note">Filtra la exposición y abre cada ficha para ver su galería. Confirma disponibilidad con Mafesur antes de desplazarte.</div>`;
   controls.before(command);
 }
 
@@ -71,5 +109,6 @@ function initDetailEditorialMeta() {
 
 formatPriceLabels();
 initCatalogueIntro();
+initSegmentFilter();
 initCatalogueObserver();
 initDetailEditorialMeta();
