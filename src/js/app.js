@@ -58,7 +58,7 @@ function mountHeader(){
       </div>
       <div class="mobile-nav-contact">
         <small>Contacto directo</small>
-        <a class="mobile-nav-phone" href="tel:+34${business.phoneHref}">${business.phone}</a>
+        <a class="mobile-nav-phone" href="tel:+${business.phoneHref}">${business.phone}</a>
         <a class="button primary" href="https://wa.me/${business.phoneHref}" target="_blank" rel="noreferrer">Abrir WhatsApp</a>
       </div>
     </div>
@@ -85,7 +85,7 @@ function mountFooter(){
       </div>
       <div class="footer-group">
         <strong>Contacto</strong>
-        <a href="tel:+34${business.phoneHref}">${business.phone}</a>
+        <a href="tel:+${business.phoneHref}">${business.phone}</a>
         <a href="tel:+34954028879">${business.landline}</a>
         <a href="mailto:${business.email}">${business.email}</a>
       </div>
@@ -224,7 +224,7 @@ function initVehicleDetail(){
             <p>Escríbenos por WhatsApp o llámanos para confirmar disponibilidad, resolver dudas o concertar una visita.</p>
             <div class="button-row">
               <a class="button primary" href="https://wa.me/${business.phoneHref}" target="_blank" rel="noreferrer">Consultar por WhatsApp</a>
-              <a class="button secondary" href="tel:+34${business.phoneHref}">Llamar ahora</a>
+              <a class="button secondary" href="tel:+${business.phoneHref}">Llamar ahora</a>
             </div>
           </div>
         </aside>
@@ -284,7 +284,7 @@ function initRentalTypes(){
 function initJourney(){
   const target = document.querySelector('[data-journey]');
   if (!target) return;
-  const images = ['/assets/facade-current.webp', '/assets/facade.webp', '/assets/ford-1.webp', '/assets/motorhome.webp', '/assets/audi-q5.webp'];
+  const images = ['/assets/facade-current.webp', '/assets/facade.webp', '/assets/ford-transit.webp', '/assets/motorhome.webp', '/assets/audi-q5.webp'];
   target.innerHTML = journey.map((item, index) => `
     <article class="timeline-card reveal">
       <span class="year">${item.year}</span>
