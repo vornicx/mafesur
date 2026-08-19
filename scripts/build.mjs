@@ -12,6 +12,7 @@ const jsFiles = [
   'src/js/app.js',
   'src/js/data.js',
   'src/js/catalog.generated.js',
+  'src/js/catalog-normalize.js',
   'src/js/site.js',
   'src/js/enhancements.js',
   'src/js/catalog-experience.js'
