@@ -2,7 +2,7 @@ import { business } from './data.js';
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = matchMedia('(hover:hover) and (pointer:fine)').matches;
-const phoneHref = `tel:+34${business.phoneHref}`;
+const phoneHref = `tel:+${business.phoneHref}`;
 const whatsappHref = `https://wa.me/${business.phoneHref}`;
 
 const icons = {
@@ -10,8 +10,14 @@ const icons = {
   message: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.6a8 8 0 0 1-11.9 7L4 20l1.4-4A8 8 0 1 1 20 11.6Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.2 9.1c.7 2 2.4 3.7 4.4 4.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>'
 };
 
+function normalizeContactLinks(){
+  document.querySelectorAll('a[href^="tel:+3434"]').forEach(link => {
+    link.href = link.getAttribute('href').replace('tel:+3434', 'tel:+34');
+  });
+}
+
 function initMobileDock(){
-  if (document.querySelector('.mobile-action-dock')) return;
+  if (document.querySelector('.mobile-action-dock') || location.pathname.startsWith('/panel')) return;
   const path = location.pathname;
   let primaryLabel = 'WhatsApp';
   let primaryHref = whatsappHref;
@@ -179,6 +185,7 @@ function improveImageLoading(){
   });
 }
 
+normalizeContactLinks();
 initMobileDock();
 initLightbox();
 initMediaDepth();
