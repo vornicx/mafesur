@@ -13,7 +13,8 @@ const jsFiles = [
   'src/js/data.js',
   'src/js/catalog.generated.js',
   'src/js/site.js',
-  'src/js/enhancements.js'
+  'src/js/enhancements.js',
+  'src/js/catalog-experience.js'
 ];
 
 for (const file of jsFiles) {
