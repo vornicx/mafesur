@@ -7,8 +7,8 @@ const out = resolve(root, 'src/assets');
 await mkdir(out, { recursive: true });
 
 const headers = {
-  'user-agent': 'Mozilla/5.0 MafesurAssetBuilder/2.0',
-  accept: 'text/html,application/xhtml+xml,image/avif,image/webp,image/apng,image/*,*/*;q=0.8'
+  'user-agent': 'Mozilla/5.0 MafesurAssetBuilder/2.1',
+  accept: 'text/html,application/xhtml+xml,application/json,image/avif,image/webp,image/apng,image/*,*/*;q=0.8'
 };
 
 async function fetchOk(url) {
@@ -21,13 +21,17 @@ async function text(url) {
   return (await fetchOk(url)).text();
 }
 
+async function json(url) {
+  return (await fetchOk(url)).json();
+}
+
 const decode = value => value
   .replaceAll('&amp;', '&')
   .replaceAll('&#038;', '&')
   .replaceAll('&#8211;', '–')
   .replaceAll('&#8217;', '’');
 
-const normalise = value => decode(value)
+const normalise = value => decode(String(value || ''))
   .normalize('NFD')
   .replace(/[\u0300-\u036f]/g, '')
   .toLowerCase()
@@ -64,12 +68,9 @@ function galleryImages(html) {
   for (const match of html.matchAll(/data-large_image=["']([^"']+)["']/gi)) push(match[1]);
   for (const match of html.matchAll(/<a[^>]+href=["']([^"']+)["'][^>]*data-rel=["'][^"']*prettyPhoto/gi)) push(match[1]);
   for (const match of html.matchAll(/<img\b[^>]*(?:wp-post-image|woocommerce-product-gallery__image)[^>]*>/gi)) {
-    const src = match[0].match(/(?:src|data-src)=["']([^"']+)/i)?.[1];
-    push(src);
+    push(match[0].match(/(?:src|data-src)=["']([^"']+)/i)?.[1]);
   }
-
-  const og = ogImage(html);
-  if (og) push(og);
+  push(ogImage(html));
   return urls;
 }
 
@@ -78,6 +79,10 @@ async function optionalText(...urls) {
     try { return await text(url); } catch {}
   }
   return '';
+}
+
+async function optionalJson(url) {
+  try { return await json(url); } catch { return []; }
 }
 
 async function save(url, name, quality = 84) {
@@ -95,8 +100,8 @@ async function save(url, name, quality = 84) {
 
 const home = await text('https://www.mafesur.es/');
 const catalogue = await optionalText(
-  'https://www.mafesur.es/venta-de-vehiculos-de-ocasion/',
-  'https://www.mafesur.es/venta-de-vehiculos/'
+  'https://www.mafesur.es/venta-de-vehiculos/',
+  'https://www.mafesur.es/venta-de-vehiculos-de-ocasion/'
 );
 
 const logo = firstImage(home, ['logo'])
@@ -124,27 +129,52 @@ const anchors = [...catalogue.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s
 }));
 
 const vehicles = [
-  { id: 'audi-q5', words: ['audi', 'q5'], fallback: facadeCurrent },
-  { id: 'ford-transit', words: ['ford', 'transit'], fallback: facadeCurrent },
-  { id: 'citroen-berlingo', words: ['citroen', 'berlingo'], fallback: facadeCurrent },
-  { id: 'nissan-qashqai', words: ['nissan', 'qashqai'], fallback: facadeCurrent },
-  { id: 'peugeot-208', words: ['peugeot', '208'], fallback: facadeCurrent },
-  { id: 'vw-troc', words: ['volkswagen', 't roc'], fallback: facadeCurrent },
-  { id: 'vw-passat', words: ['volkswagen', 'passat'], fallback: facadeCurrent },
-  { id: 'peugeot-3008', words: ['peugeot', '3008'], fallback: facadeCurrent },
-  { id: 'bmw-x4', words: ['bmw', 'x4'], fallback: facadeCurrent }
+  { id: 'audi-q5', query: 'Audi Q5', words: ['audi', 'q5'] },
+  { id: 'ford-transit', query: 'Ford Transit Custom', words: ['ford', 'transit'] },
+  { id: 'citroen-berlingo', query: 'Citroen Berlingo', words: ['citroen', 'berlingo'] },
+  { id: 'nissan-qashqai', query: 'Nissan Qashqai', words: ['nissan', 'qashqai'] },
+  { id: 'peugeot-208', query: 'Peugeot 208', words: ['peugeot', '208'] },
+  { id: 'vw-troc', query: 'Volkswagen T-Roc', words: ['volkswagen', 't roc'] },
+  { id: 'vw-passat', query: 'Volkswagen Passat', words: ['volkswagen', 'passat'] },
+  { id: 'peugeot-3008', query: 'Peugeot 3008', words: ['peugeot', '3008'] },
+  { id: 'bmw-x4', query: 'BMW X4', words: ['bmw', 'x4'] }
 ];
 
-for (const vehicle of vehicles) {
+async function storeImages(vehicle) {
+  const endpoint = `https://www.mafesur.es/wp-json/wc/store/v1/products?search=${encodeURIComponent(vehicle.query)}&per_page=20`;
+  const products = await optionalJson(endpoint);
+  const wanted = vehicle.words.map(normalise);
+  const product = Array.isArray(products)
+    ? products.find(item => wanted.every(word => normalise(`${item.name} ${item.permalink || ''}`).includes(word))) || products[0]
+    : null;
+  if (!product) return [];
+  const urls = (product.images || []).map(image => image.src || image.thumbnail || image.srcset?.split(' ')[0]).filter(Boolean);
+  if (urls.length) console.log(`${vehicle.id}: WooCommerce Store API`);
+  return urls;
+}
+
+async function scrapedImages(vehicle) {
   const wanted = vehicle.words.map(normalise);
   const match = anchors.find(anchor => /\/producto\//i.test(anchor.href) && wanted.every(word => anchor.haystack.includes(word)));
-  const page = match ? await optionalText(match.href) : '';
+  if (!match) return [];
+  const page = await optionalText(match.href);
   const found = galleryImages(page);
-  const fallback = found[0] || vehicle.fallback;
-  const images = [found[0] || fallback, found[1] || fallback, found[2] || fallback];
+  if (found.length) console.log(`${vehicle.id}: official product page fallback`);
+  return found;
+}
 
+for (const vehicle of vehicles) {
+  let found = await storeImages(vehicle);
+  if (!found.length) found = await scrapedImages(vehicle);
+
+  if (!found.length) {
+    console.warn(`${vehicle.id}: product imagery unavailable; using neutral local facility fallback`);
+    found = [facadeCurrent];
+  }
+
+  const fallback = found[0];
+  const images = [found[0] || fallback, found[1] || fallback, found[2] || fallback];
   await save(images[0], `${vehicle.id}.webp`, 87);
   await save(images[1], `${vehicle.id}-2.webp`, 85);
   await save(images[2], `${vehicle.id}-3.webp`, 85);
-  console.log(`${vehicle.id}: ${match ? 'official product page' : 'safe local fallback'}`);
 }
