@@ -27,7 +27,7 @@ function initMobileDock(){
     primaryHref = '#cita';
   } else if (path.startsWith('/alquiler')) {
     primaryLabel = 'Consultar alquiler';
-  } else if (path.startsWith('/vehiculo')) {
+  } else if (path === '/vehiculo/' || path === '/vehiculo') {
     primaryLabel = 'Consultar vehículo';
   }
 
@@ -37,6 +37,7 @@ function initMobileDock(){
   dock.innerHTML = `
     <a class="mobile-action" href="${phoneHref}">${icons.phone}<span>Llamar</span></a>
     <a class="mobile-action primary" href="${primaryHref}" ${primaryHref.startsWith('http') ? 'target="_blank" rel="noreferrer"' : ''}>${icons.message}<span>${primaryLabel}</span></a>`;
+  document.body.classList.add('has-mobile-dock');
   document.body.appendChild(dock);
 
   const sync = () => dock.classList.toggle('is-visible', scrollY > 110 || path !== '/');
