@@ -107,8 +107,19 @@ function initDetailEditorialMeta() {
   formatPriceLabels(panel);
 }
 
+function syncPanelInventoryCount() {
+  if (!location.pathname.startsWith('/panel')) return;
+  const first = document.querySelector('.panel-overview .panel-box');
+  if (!first) return;
+  const value = first.querySelector('strong');
+  const copy = first.querySelector('span');
+  if (value) value.textContent = String(vehicles.length);
+  if (copy) copy.textContent = 'Vehículos publicados materializados desde el inventario actual de Mafesur.';
+}
+
 formatPriceLabels();
 initCatalogueIntro();
 initSegmentFilter();
 initCatalogueObserver();
 initDetailEditorialMeta();
+syncPanelInventoryCount();
