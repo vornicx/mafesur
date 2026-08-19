@@ -8,7 +8,7 @@ const generatedCatalogue = resolve(root, 'src/js/catalog.generated.js');
 await mkdir(out, { recursive: true });
 
 const headers = {
-  'user-agent': 'Mozilla/5.0 MafesurAssetBuilder/3.0',
+  'user-agent': 'Mozilla/5.0 MafesurAssetBuilder/3.1',
   accept: 'text/html,application/xhtml+xml,application/json,image/avif,image/webp,image/apng,image/*,*/*;q=0.8'
 };
 
@@ -17,7 +17,6 @@ async function fetchOk(url) {
   if (!response.ok) throw new Error(`${response.status} ${url}`);
   return response;
 }
-
 async function text(url) { return (await fetchOk(url)).text(); }
 async function json(url) { return (await fetchOk(url)).json(); }
 async function optionalText(...urls) {
@@ -29,6 +28,7 @@ async function optionalJson(url) { try { return await json(url); } catch { retur
 const decode = value => String(value || '')
   .replaceAll('&amp;', '&')
   .replaceAll('&#038;', '&')
+  .replaceAll('&#38;', '&')
   .replaceAll('&#8211;', '–')
   .replaceAll('&#8217;', '’')
   .replaceAll('&nbsp;', ' ');
@@ -57,7 +57,6 @@ function firstImage(html, words = []) {
     }
   }
 }
-
 function ogImage(html) {
   return html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)/i)?.[1]
     || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i)?.[1];
@@ -88,33 +87,21 @@ await save(facadeCurrent, 'facade-current.webp', 85, 1800);
 await save(facade, 'facade.webp', 85, 1800);
 await save(motorhome, 'motorhome.webp', 85, 1800);
 
-// Stable hero/editorial assets. These remain named so the static art direction
-// does not depend on whatever order the live catalogue returns.
 const showcaseQueries = [
-  ['audi-q5', 'Audi Q5'],
-  ['ford-transit', 'Ford Transit Custom'],
-  ['citroen-berlingo', 'Citroen Berlingo'],
-  ['nissan-qashqai', 'Nissan Qashqai'],
-  ['peugeot-208', 'Peugeot 208'],
-  ['vw-troc', 'Volkswagen T-Roc'],
-  ['vw-passat', 'Volkswagen Passat'],
-  ['peugeot-3008', 'Peugeot 3008'],
-  ['bmw-x4', 'BMW X4']
+  ['audi-q5', 'Audi Q5'], ['ford-transit', 'Ford Transit Custom'], ['citroen-berlingo', 'Citroen Berlingo'],
+  ['nissan-qashqai', 'Nissan Qashqai'], ['peugeot-208', 'Peugeot 208'], ['vw-troc', 'Volkswagen T-Roc'],
+  ['vw-passat', 'Volkswagen Passat'], ['peugeot-3008', 'Peugeot 3008'], ['bmw-x4', 'BMW X4']
 ];
-
 for (const [id, query] of showcaseQueries) {
-  const products = await optionalJson(`https://www.mafesur.es/wp-json/wc/store/v1/products?search=${encodeURIComponent(query)}&per_page=20`);
-  const product = Array.isArray(products) ? products.find(item => item.images?.length) : null;
+  const results = await optionalJson(`https://www.mafesur.es/wp-json/wc/store/v1/products?search=${encodeURIComponent(query)}&per_page=20`);
+  const product = Array.isArray(results) ? results.find(item => item.images?.length) : null;
   const urls = (product?.images || []).map(image => image.src || image.thumbnail).filter(Boolean);
   const safe = urls.length ? urls : [facadeCurrent];
-  for (let index = 0; index < 3; index += 1) {
+  await Promise.all([0, 1, 2].map(async index => {
     await save(safe[index] || safe[0], `${id}${index ? `-${index + 1}` : ''}.webp`, index ? 80 : 84, index ? 1500 : 1700);
-  }
+  }));
 }
 
-// Build the public catalogue from the official WooCommerce Store API.
-// The API currently exposes the products Mafesur itself publishes; runtime
-// never calls it because the resulting data and photos are materialised here.
 const apiUrl = 'https://www.mafesur.es/wp-json/wc/store/v1/products?per_page=100';
 const rawProducts = await optionalJson(apiUrl);
 if (!Array.isArray(rawProducts) || !rawProducts.length) throw new Error('Mafesur Store API returned no products.');
@@ -129,7 +116,8 @@ const regularPrice = product => {
   const value = Number(product?.prices?.regular_price || 0);
   return Number.isFinite(value) && value > 0 ? value / (10 ** unit) : 0;
 };
-const canonicalName = name => normalise(String(name || '').replace(/\s*\(copia\)\s*/gi, ''));
+const cleanName = value => decode(String(value || '')).replace(/\s*\(copia\)\s*/gi, '').replace(/\s+/g, ' ').trim();
+const canonicalName = name => normalise(cleanName(name));
 const productScore = product => (minorPrice(product) > 0 ? 10000 : 0) + (/\(copia\)/i.test(product.name || '') ? 0 : 2000) + ((product.images || []).length * 10);
 
 const deduped = new Map();
@@ -141,18 +129,31 @@ for (const product of rawProducts) {
 }
 const products = [...deduped.values()];
 
-const brands = ['Mercedes-Benz','Land Rover','Volkswagen','Citroën','Citroen','Peugeot','Renault','Nissan','Audi','BMW','Ford','Opel','SEAT','Seat','Škoda','Skoda','Toyota','Hyundai','Kia','Fiat','Volvo','Dacia','Jeep','Cupra','DS'];
+const brandAliases = [
+  [/^(mercedes(?:-benz)?|mercedes benz)\b/i, 'Mercedes-Benz'], [/^land rover\b/i, 'Land Rover'],
+  [/^volkswagen\b/i, 'Volkswagen'], [/^(citroen|citroën)\b/i, 'Citroën'], [/^(peugeot|peigeot|peugeot|pei?geot)\b/i, 'Peugeot'],
+  [/^renault\b/i, 'Renault'], [/^nissan\b/i, 'Nissan'], [/^audi\b/i, 'Audi'], [/^bmw\b/i, 'BMW'],
+  [/^ford\b/i, 'Ford'], [/^opel\b/i, 'Opel'], [/^seat\b/i, 'SEAT'], [/^(skoda|škoda)\b/i, 'Škoda'],
+  [/^toyota\b/i, 'Toyota'], [/^hyundai\b/i, 'Hyundai'], [/^kia\b/i, 'Kia'], [/^fiat\b/i, 'Fiat'],
+  [/^volvo\b/i, 'Volvo'], [/^dacia\b/i, 'Dacia'], [/^jeep\b/i, 'Jeep'], [/^cupra\b/i, 'Cupra'],
+  [/^ds\b/i, 'DS'], [/^mini\b/i, 'MINI'], [/^(chevrolet|cjevrolet)\b/i, 'Chevrolet']
+];
 function brandOf(name) {
-  const normalizedName = normalise(name);
-  return brands.find(brand => normalizedName.startsWith(normalise(brand))) || String(name || '').split(/\s+/)[0] || 'Mafesur';
+  const value = cleanName(name);
+  return brandAliases.find(([pattern]) => pattern.test(value))?.[1] || value.split(/\s+/)[0] || 'Mafesur';
 }
 function modelOf(name, brand) {
-  const clean = String(name || '').replace(/\s*\(copia\)\s*/gi, '').trim();
-  const pattern = new RegExp(`^${brand.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s+`, 'i');
-  return clean.replace(pattern, '').trim() || clean;
+  let value = cleanName(name);
+  for (const [pattern, canonical] of brandAliases) {
+    if (canonical === brand && pattern.test(value)) {
+      value = value.replace(pattern, '').trim();
+      break;
+    }
+  }
+  return value || cleanName(name);
 }
 function yearOf(textValue) {
-  const explicit = textValue.match(/(?:año|matriculaci[oó]n|fecha\s+de\s+matriculaci[oó]n)\D{0,20}(20(?:1\d|2[0-6]))/i)?.[1];
+  const explicit = textValue.match(/(?:año|matriculaci[oó]n|fecha\s+de\s+matriculaci[oó]n)\D{0,20}(20(?:0\d|1\d|2[0-6]))/i)?.[1];
   return explicit ? Number(explicit) : null;
 }
 function kmsOf(textValue) {
@@ -162,29 +163,53 @@ function kmsOf(textValue) {
   return Number.isFinite(value) ? `${new Intl.NumberFormat('es-ES').format(value)} km` : 'Consultar';
 }
 function powerOf(name, textValue) {
-  const match = `${name} ${textValue}`.match(/\b(\d{2,3})\s*(?:cv|c\.v\.)\b/i)?.[1];
+  const inName = cleanName(name).match(/\b(\d{2,3})\s*(?:cv|c\.v\.)\b/i)?.[1];
+  const inText = textValue.match(/\b(\d{2,3})\s*(?:cv|c\.v\.)\b/i)?.[1];
+  const match = inName || inText;
   return match ? `${match} CV` : 'Consultar';
 }
 function gearOf(name, textValue) {
-  const value = normalise(`${name} ${textValue}`);
-  if (/automatic|s tronic|dsg|steptronic|edc|cambio auto/.test(value)) return 'Automático';
-  if (/manual|cambio manual/.test(value)) return 'Manual';
+  const title = normalise(cleanName(name));
+  if (/automatic|s tronic|dsg|steptronic|edc|cambio auto| at\b/.test(title)) return 'Automático';
+  if (/manual|cambio manual/.test(title)) return 'Manual';
+  const explicit = normalise(textValue.match(/(?:cambio|transmisi[oó]n)\s*[:\-]?\s*(autom[aá]tic[oa]|manual)/i)?.[1] || '');
+  if (explicit.includes('automatic')) return 'Automático';
+  if (explicit.includes('manual')) return 'Manual';
   return 'Consultar';
 }
 function fuelOf(name, textValue) {
-  const value = normalise(`${name} ${textValue}`);
-  if (/electrico|electric|bev/.test(value)) return 'Eléctrico';
-  if (/phev|hibrido enchufable/.test(value)) return 'Híbrido enchufable';
-  if (/mhev|mild hybrid/.test(value) && /diesel|diesel|tdi|hdi|dci|tdci/.test(value)) return 'Diésel / MHEV';
-  if (/mhev|mild hybrid|hibrido/.test(value)) return 'Híbrido';
-  if (/diesel|tdi|bluehdi|hdi|dci|tdci|cdti/.test(value)) return 'Diésel';
-  if (/gasolina|tsi|tfsi|puretech|ecoboost|mpi/.test(value)) return 'Gasolina';
+  const title = normalise(cleanName(name));
+  const full = normalise(textValue);
+  const diesel = /diesel|tdi|bluehdi|blue hdi|\bhdi\b|dci|tdci|cdti|svdt/.test(title);
+  const hybrid = /mhev|mild hybrid|hybrid|hibrido/.test(title);
+  if (diesel && hybrid) return 'Diésel / MHEV';
+  if (diesel) return 'Diésel';
+  if (/phev|hibrido enchufable/.test(title)) return 'Híbrido enchufable';
+  if (hybrid) return 'Híbrido';
+  if (/100 electrico|electrico|electric|\bbev\b/.test(title)) return 'Eléctrico';
+  if (/gasolina|\btsi\b|tfsi|puretech|ecoboost|\bmpi\b/.test(title)) return 'Gasolina';
+
+  if (/diesel|tdi|bluehdi|blue hdi|\bhdi\b|dci|tdci|cdti|svdt/.test(full)) return 'Diésel';
+  if (/combustible\s*[:\-]?\s*(gasolina)/.test(full)) return 'Gasolina';
+  if (/combustible\s*[:\-]?\s*(hibrido|hybrid)/.test(full)) return 'Híbrido';
+  if (/combustible\s*[:\-]?\s*(electrico|electric)/.test(full)) return 'Eléctrico';
   return 'Consultar';
 }
 function colorOf(textValue) {
-  const match = textValue.match(/\bcolor\s*[:\-]?\s*([A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{3,24})/i)?.[1]?.trim();
+  const known = ['negro','blanco','gris','plata','azul','rojo','verde','beige','marrón','marron','amarillo','naranja'];
+  const match = textValue.match(/\bcolor\s*[:\-]\s*([A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{3,24})/i)?.[1]?.trim();
   if (!match) return 'Consultar';
-  return match.split(/\s{2,}|\.|,|\||\//)[0].trim().slice(0, 22) || 'Consultar';
+  const normalized = normalise(match);
+  const color = known.find(item => normalized.startsWith(normalise(item)));
+  return color ? `${color[0].toUpperCase()}${color.slice(1)}` : 'Consultar';
+}
+function segmentOf(name) {
+  const value = normalise(cleanName(name));
+  if (/mclouis|mclouise|yearlin|autocaravana|motorhome/.test(value)) return 'Autocaravana';
+  if (/transit|partner|berlingo|ducato|furgon|industrial/.test(value)) return 'Industrial';
+  if (/q[357]|x[1345]|qashqai|t roc|touareg|evoque|xc[46]0|sportage|crossland|3008|5008|ds7|crossback/.test(value)) return 'SUV';
+  if (/passat|arteon|508|607|605/.test(value)) return 'Berlina';
+  return 'Ocasión';
 }
 function detailsOf(description, fuel, gear, power) {
   const details = [];
@@ -196,38 +221,52 @@ function detailsOf(description, fuel, gear, power) {
   if (details.length < 3) details.push('Vehículo revisado por Mafesur');
   return [...new Set(details)].slice(0, 5);
 }
+function summaryOf(brand, model, segment) {
+  if (segment === 'Autocaravana') return `${brand} ${model} disponible en Mafesur. Consulta condiciones, equipamiento y disponibilidad para tu próxima salida.`;
+  if (segment === 'Industrial') return `${brand} ${model} disponible en Mafesur. Una opción orientada a trabajo y movilidad profesional; consulta condiciones y disponibilidad.`;
+  return `${brand} ${model} disponible en la exposición de Mafesur. Consulta disponibilidad, condiciones y opciones de financiación.`;
+}
 
-const pricedIds = [...products]
-  .filter(product => minorPrice(product) > 0)
-  .sort((a, b) => minorPrice(b) - minorPrice(a))
-  .slice(0, 3)
-  .map(product => product.id);
+const candidates = [...products]
+  .filter(product => minorPrice(product) > 0 && segmentOf(product.name) !== 'Autocaravana')
+  .sort((a, b) => minorPrice(b) - minorPrice(a));
+const featuredIds = [];
+const featuredBrands = new Set();
+for (const product of candidates) {
+  const brand = brandOf(product.name);
+  if (featuredBrands.has(brand)) continue;
+  featuredBrands.add(brand);
+  featuredIds.push(product.id);
+  if (featuredIds.length === 3) break;
+}
 
 const generated = [];
 for (const product of products) {
   const brand = brandOf(product.name);
   const model = modelOf(product.name, brand);
   const description = stripHtml(product.description || product.short_description || '');
+  const segment = segmentOf(product.name);
   const fuel = fuelOf(product.name, description);
   const gear = gearOf(product.name, description);
   const power = powerOf(product.name, description);
   const sourceImages = (product.images || []).map(image => image.src || image.thumbnail).filter(Boolean);
   const images = sourceImages.length ? sourceImages : [facadeCurrent];
-  const gallery = [];
+  const gallery = new Array(images.length);
 
-  for (let index = 0; index < images.length; index += 1) {
+  await Promise.all(images.map(async (url, index) => {
     const file = `stock-${product.id}-${index + 1}.webp`;
     try {
-      await save(images[index], file, index === 0 ? 83 : 78, index === 0 ? 1700 : 1450);
-      gallery.push(`/assets/${file}`);
+      await save(url, file, index === 0 ? 83 : 78, index === 0 ? 1700 : 1450);
+      gallery[index] = `/assets/${file}`;
     } catch (error) {
       console.warn(`image ${product.id}/${index + 1}: ${error.message}`);
     }
-  }
-  if (!gallery.length) {
+  }));
+  const validGallery = gallery.filter(Boolean);
+  if (!validGallery.length) {
     const file = `stock-${product.id}-1.webp`;
     await save(facadeCurrent, file, 82, 1600);
-    gallery.push(`/assets/${file}`);
+    validGallery.push(`/assets/${file}`);
   }
 
   const price = minorPrice(product);
@@ -240,6 +279,7 @@ for (const product of products) {
     sourceId: product.id,
     brand,
     model,
+    segment,
     year: year || 'Consultar',
     gear,
     fuel,
@@ -248,15 +288,15 @@ for (const product of products) {
     kms: kmsOf(description),
     price,
     before: before > price ? before : 0,
-    featured: pricedIds.includes(product.id),
-    image: gallery[0],
-    gallery,
-    summary: `Vehículo de ocasión disponible en la exposición de Mafesur. Consulta disponibilidad, condiciones y opciones de financiación.`,
+    featured: featuredIds.includes(product.id),
+    image: validGallery[0],
+    gallery: validGallery,
+    summary: summaryOf(brand, model, segment),
     details: detailsOf(description, fuel, gear, power),
-    label: premium ? 'Premium Selection' : 'Ocasión'
+    label: premium ? 'Premium Selection' : segment
   });
 }
 
 generated.sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || (b.price || 0) - (a.price || 0));
 await writeFile(generatedCatalogue, `// Generated at build time from Mafesur public inventory.\nexport const generatedVehicles = ${JSON.stringify(generated, null, 2)};\n`);
-console.log(`catalogue ${rawProducts.length} products → ${generated.length} unique vehicles · galleries localised`);
+console.log(`catalogue ${rawProducts.length} products → ${generated.length} unique vehicles · ${generated.reduce((sum, item) => sum + item.gallery.length, 0)} local gallery images`);
