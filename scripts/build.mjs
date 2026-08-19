@@ -11,6 +11,7 @@ await import('./sync-assets.mjs');
 const jsFiles = [
   'src/js/app.js',
   'src/js/data.js',
+  'src/js/catalog.generated.js',
   'src/js/site.js',
   'src/js/enhancements.js'
 ];
@@ -50,8 +51,14 @@ for (const asset of assetRefs) {
   await access(resolve(src, 'assets', asset));
 }
 
+const catalogueModule = await readFile(resolve(src, 'js/catalog.generated.js'), 'utf8');
+const catalogueEntries = (catalogueModule.match(/"sourceId"/g) || []).length;
+if (catalogueEntries && catalogueEntries < 30) {
+  throw new Error(`Catalogue completeness gate failed: only ${catalogueEntries} live vehicles generated.`);
+}
+
 await rm(dist, { recursive: true, force: true });
 await mkdir(dist, { recursive: true });
 await cp(src, dist, { recursive: true });
 
-console.log(`Mafesur flagship built → dist/ · ${assetRefs.size} local assets verified · JS syntax OK`);
+console.log(`Mafesur flagship built → dist/ · ${assetRefs.size} local assets verified · ${catalogueEntries || 'fallback'} catalogue vehicles · JS syntax OK`);
