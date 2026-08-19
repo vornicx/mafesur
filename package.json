@@ -5,7 +5,11 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
+    "sync-assets": "node scripts/sync-assets.mjs",
     "dev": "node scripts/dev.mjs",
     "start": "node scripts/dev.mjs --dist"
+  },
+  "dependencies": {
+    "sharp": "^0.34.3"
   }
 }
