@@ -24,9 +24,9 @@ npm run dev
 
 Abrir `http://localhost:4173`.
 
-## Nota de assets
+## Nota de assets e inventario
 
-La mayoría de imágenes empleadas en el concepto proceden de recursos públicos de Mafesur. La imagen del Audi Q5 es representativa y debe sustituirse por fotografía exacta del stock antes de una entrega final/producción.
+Las imágenes visibles del concepto se sirven desde recursos públicos oficiales de Mafesur. El inventario de la demo es una selección curada para presentar la experiencia y no debe interpretarse como una sincronización en tiempo real del stock. Antes de una entrega final/producción se conectaría el inventario real, sus fotografías, kilometraje, equipamiento, disponibilidad y precios.
 
 ## Estado
 
