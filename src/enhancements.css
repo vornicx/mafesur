@@ -1,0 +1,68 @@
+/* Mafesur v4.1 — interaction and mobile conversion layer */
+:root{--dock-h:70px}
+html.lightbox-open,body.lightbox-open{overflow:hidden}
+body{padding-bottom:0}
+
+:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.button:focus-visible,.menu-toggle:focus-visible,.mobile-nav-close:focus-visible{outline-offset:2px}
+
+@media(hover:hover) and (pointer:fine){
+  .service-card,.vehicle-card,.rental-card,.vehicle-preview-card{transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s var(--ease)}
+  .service-card:hover,.vehicle-card:hover,.rental-card:hover,.vehicle-preview-card:hover{transform:translateY(-4px);box-shadow:0 24px 56px rgba(13,23,38,.11);border-color:#c9c3b7}
+  .service-card img,.vehicle-card-media img,.vehicle-preview-card img,.editorial-image img,.visual-card img,.contact-visual img{will-change:transform}
+  .media-depth{transform:translate3d(0,var(--media-shift,0),0) scale(1.035);transition:transform .16s linear}
+  .magnetic{transform:translate3d(var(--mag-x,0),var(--mag-y,0),0)}
+}
+
+.hero-main-card{isolation:isolate}
+.hero-main-card::before{content:"";position:absolute;z-index:3;inset:10px;border:1px solid rgba(255,255,255,.26);pointer-events:none}
+.hero-side-card,.hero-side-tall{box-shadow:0 12px 32px rgba(13,23,38,.08)}
+.vehicle-card-media::after{content:"";position:absolute;inset:auto 0 0;height:1px;background:linear-gradient(90deg,transparent,rgba(216,198,37,.75),transparent);opacity:.7}
+
+/* Vehicle image viewer */
+.media-lightbox{position:fixed;z-index:120;inset:0;display:grid;grid-template-rows:auto 1fr auto;background:rgba(7,13,23,.97);color:#fff;opacity:0;pointer-events:none;transition:opacity .28s var(--ease)}
+.media-lightbox.is-open{opacity:1;pointer-events:auto}
+.media-lightbox-top{min-height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;border-bottom:1px solid rgba(255,255,255,.12)}
+.media-lightbox-meta{display:flex;align-items:center;gap:14px;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.media-lightbox-meta strong{color:#fff;font-weight:700}
+.media-lightbox-close,.media-lightbox-nav{width:46px;height:46px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;border-radius:50%;font-size:1.45rem;transition:background .2s,border-color .2s,transform .2s}
+.media-lightbox-close:hover,.media-lightbox-nav:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.45)}
+.media-lightbox-stage{position:relative;display:grid;place-items:center;min-height:0;padding:24px 92px;overflow:hidden;touch-action:pan-y}
+.media-lightbox-image{max-width:min(1180px,100%);max-height:calc(100vh - 190px);width:auto;height:auto;object-fit:contain;box-shadow:0 30px 100px rgba(0,0,0,.35);user-select:none;-webkit-user-drag:none;transition:opacity .16s ease,transform .35s var(--ease)}
+.media-lightbox-image.is-changing{opacity:.25;transform:scale(.985)}
+.media-lightbox-prev,.media-lightbox-next{position:absolute;top:50%;transform:translateY(-50%)}
+.media-lightbox-prev{left:24px}.media-lightbox-next{right:24px}
+.media-lightbox-bottom{min-height:70px;display:flex;justify-content:center;align-items:center;gap:8px;padding:10px 20px 16px;border-top:1px solid rgba(255,255,255,.08)}
+.media-lightbox-dot{width:36px;height:4px;border:0;background:rgba(255,255,255,.22);padding:0;transition:background .2s,width .25s var(--ease)}
+.media-lightbox-dot.is-active{width:58px;background:#fff}
+.gallery-main{cursor:zoom-in;position:relative}
+.gallery-main::after{content:"Ampliar";position:absolute;right:12px;bottom:12px;padding:8px 10px;background:rgba(8,17,31,.82);color:#fff;font-size:.56rem;letter-spacing:.13em;text-transform:uppercase;pointer-events:none}
+
+/* Mobile quick actions */
+.mobile-action-dock{display:none}
+@media(max-width:820px){
+  body:not(.nav-open){padding-bottom:calc(var(--dock-h) + env(safe-area-inset-bottom))}
+  .mobile-action-dock{position:fixed;z-index:76;left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom));height:var(--dock-h);display:grid;grid-template-columns:1fr 1.35fr;gap:7px;padding:7px;background:rgba(243,241,235,.94);border:1px solid rgba(13,23,38,.12);box-shadow:0 18px 52px rgba(13,23,38,.18);backdrop-filter:blur(18px);transform:translateY(120%);opacity:0;transition:transform .42s var(--ease),opacity .3s var(--ease)}
+  .mobile-action-dock.is-visible{transform:none;opacity:1}
+  .nav-open .mobile-action-dock{transform:translateY(120%);opacity:0;pointer-events:none}
+  .mobile-action{display:flex;align-items:center;justify-content:center;gap:8px;min-width:0;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:.78rem;font-weight:750}
+  .mobile-action.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .mobile-action svg{width:16px;height:16px;flex:0 0 auto}
+  .media-lightbox-top{min-height:60px;padding:0 16px}
+  .media-lightbox-stage{padding:16px 12px 72px}
+  .media-lightbox-image{max-height:calc(100vh - 160px);width:100%}
+  .media-lightbox-prev,.media-lightbox-next{top:auto;bottom:14px;transform:none}
+  .media-lightbox-prev{left:calc(50% - 54px)}.media-lightbox-next{right:calc(50% - 54px)}
+  .media-lightbox-bottom{display:none}
+  .gallery-main::after{content:"Toca para ampliar"}
+}
+
+@media(max-width:520px){
+  .mobile-action-dock{left:8px;right:8px;bottom:calc(6px + env(safe-area-inset-bottom))}
+  .mobile-action{font-size:.74rem}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .media-lightbox,.media-lightbox-image,.mobile-action-dock,.service-card,.vehicle-card,.rental-card,.vehicle-preview-card{transition:none!important}
+  .media-depth,.magnetic{transform:none!important}
+}
