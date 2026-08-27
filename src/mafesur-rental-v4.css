@@ -1,0 +1,187 @@
+/* Mafesur Rental v4 — use-led, practical, unmistakably Mafesur */
+body[data-page="alquiler"]{
+  --mfr-ink:#0b0d0f;
+  --mfr-paper:#fff;
+  --mfr-soft:#f3f4f2;
+  --mfr-line:#dadee0;
+  --mfr-muted:#626970;
+  --mfr-yellow:#e2d51f;
+  background:var(--mfr-paper);
+  color:var(--mfr-ink);
+}
+body[data-page="alquiler"] .page{overflow:hidden;background:#fff}
+body[data-page="alquiler"] .container{width:min(1380px,calc(100% - 64px));margin-inline:auto}
+body[data-page="alquiler"] .mfr-kicker{display:block;margin-bottom:16px;font-size:.67rem;font-weight:850;letter-spacing:.16em;text-transform:uppercase;color:var(--mfr-muted)}
+body[data-page="alquiler"] .mfr-title{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:clamp(3rem,5.4vw,6.1rem);font-weight:650;line-height:.9;letter-spacing:-.07em}
+body[data-page="alquiler"] .mfr-copy{font-size:1rem;line-height:1.72;color:var(--mfr-muted)}
+
+body[data-page="alquiler"] .mfr-hero{padding-top:78px;background:var(--mfr-ink);color:#fff}
+body[data-page="alquiler"] .mfr-hero-grid{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(410px,.82fr);min-height:720px}
+body[data-page="alquiler"] .mfr-hero-media{position:relative;overflow:hidden;min-height:720px;background:#171b1e}
+body[data-page="alquiler"] .mfr-hero-media img{width:100%;height:100%;object-fit:cover;filter:saturate(.98) contrast(1.04)}
+body[data-page="alquiler"] .mfr-hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(5,7,8,.7) 100%)}
+body[data-page="alquiler"] .mfr-hero-badge{position:absolute;z-index:2;left:30px;bottom:28px;padding:9px 11px;background:var(--mfr-yellow);color:var(--mfr-ink);font-size:.6rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+body[data-page="alquiler"] .mfr-hero-copy{display:flex;flex-direction:column;justify-content:center;padding:82px clamp(42px,6vw,94px);border-left:1px solid rgba(255,255,255,.12)}
+body[data-page="alquiler"] .mfr-hero-copy .mfr-kicker{color:var(--mfr-yellow)}
+body[data-page="alquiler"] .mfr-hero h1{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:clamp(3.7rem,5.7vw,6.6rem);font-weight:650;line-height:.88;letter-spacing:-.078em}
+body[data-page="alquiler"] .mfr-hero h1 span{display:block;color:var(--mfr-yellow)}
+body[data-page="alquiler"] .mfr-hero-copy>p{margin:28px 0 0;max-width:560px;color:rgba(255,255,255,.64);font-size:1.01rem;line-height:1.7}
+body[data-page="alquiler"] .mfr-hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:34px}
+body[data-page="alquiler"] .mfr-hero-actions .button{min-height:50px;justify-content:center}
+body[data-page="alquiler"] .mfr-hero-actions .button.primary{background:var(--mfr-yellow);border-color:var(--mfr-yellow);color:var(--mfr-ink)}
+body[data-page="alquiler"] .mfr-hero-actions .button.secondary{border-color:rgba(255,255,255,.28);color:#fff}
+body[data-page="alquiler"] .mfr-hero-facts{display:grid;grid-template-columns:repeat(2,1fr);margin-top:48px;border-top:1px solid rgba(255,255,255,.14)}
+body[data-page="alquiler"] .mfr-hero-facts div{padding:19px 20px 0 0}
+body[data-page="alquiler"] .mfr-hero-facts div+div{padding-left:20px;border-left:1px solid rgba(255,255,255,.14)}
+body[data-page="alquiler"] .mfr-hero-facts small{display:block;font-size:.58rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.38)}
+body[data-page="alquiler"] .mfr-hero-facts strong{display:block;margin-top:7px;font-size:.82rem;color:#fff}
+
+body[data-page="alquiler"] .mfr-uses{padding:112px 0}
+body[data-page="alquiler"] .mfr-uses-head{display:grid;grid-template-columns:.82fr 1.18fr;gap:90px;align-items:end;margin-bottom:55px}
+body[data-page="alquiler"] .mfr-uses-head .mfr-copy{margin:0}
+body[data-page="alquiler"] .mfr-use-list{border-top:2px solid var(--mfr-ink)}
+body[data-page="alquiler"] .mfr-use-row{display:grid;grid-template-columns:72px minmax(0,.75fr) minmax(360px,1.25fr) 42px;gap:28px;align-items:center;padding:29px 0;border-bottom:1px solid var(--mfr-line)}
+body[data-page="alquiler"] .mfr-use-row>span{font-size:.65rem;font-weight:850;letter-spacing:.12em;color:#8d8300}
+body[data-page="alquiler"] .mfr-use-row h3{margin:0;font-size:clamp(1.7rem,2.6vw,3rem);font-weight:650;line-height:1;letter-spacing:-.05em}
+body[data-page="alquiler"] .mfr-use-row p{margin:0;font-size:.88rem;line-height:1.62;color:var(--mfr-muted)}
+body[data-page="alquiler"] .mfr-use-row i{display:grid;place-items:center;width:36px;height:36px;background:var(--mfr-yellow);font-style:normal}
+
+body[data-page="alquiler"] .mfr-industrial{padding:0;background:var(--mfr-soft)}
+body[data-page="alquiler"] .mfr-industrial-grid{display:grid;grid-template-columns:1.08fr .92fr;min-height:630px}
+body[data-page="alquiler"] .mfr-industrial-media{min-height:630px;overflow:hidden}
+body[data-page="alquiler"] .mfr-industrial-media img{width:100%;height:100%;object-fit:cover;filter:saturate(.96) contrast(1.04)}
+body[data-page="alquiler"] .mfr-industrial-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,6vw,88px)}
+body[data-page="alquiler"] .mfr-industrial-copy .mfr-title{font-size:clamp(2.8rem,4.5vw,4.9rem)}
+body[data-page="alquiler"] .mfr-industrial-copy .mfr-copy{margin:23px 0 0}
+body[data-page="alquiler"] .mfr-industrial-points{margin-top:32px;border-top:2px solid var(--mfr-ink)}
+body[data-page="alquiler"] .mfr-industrial-points div{display:grid;grid-template-columns:40px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid #cfd3d4}
+body[data-page="alquiler"] .mfr-industrial-points span{font-size:.63rem;font-weight:850;color:#8c8200}
+body[data-page="alquiler"] .mfr-industrial-points strong{font-size:.88rem;font-weight:700}
+
+body[data-page="alquiler"] .mfr-rates{padding:112px 0;background:var(--mfr-ink);color:#fff}
+body[data-page="alquiler"] .mfr-rates-head{display:grid;grid-template-columns:.8fr 1.2fr;gap:90px;align-items:end;margin-bottom:48px}
+body[data-page="alquiler"] .mfr-rates-head .mfr-kicker{color:var(--mfr-yellow)}
+body[data-page="alquiler"] .mfr-rates-head .mfr-title{color:#fff;font-size:clamp(3rem,4.7vw,5.2rem)}
+body[data-page="alquiler"] .mfr-rates-head .mfr-copy{margin:0;color:rgba(255,255,255,.54)}
+body[data-page="alquiler"] .mfr-rates .rates-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.14)}
+body[data-page="alquiler"] .mfr-rates .rate-card{margin:0;padding:30px;background:#121619;border:0;border-radius:0;color:#fff}
+body[data-page="alquiler"] .mfr-rates .rate-card.featured{background:#171c20;border-top:5px solid var(--mfr-yellow)}
+body[data-page="alquiler"] .mfr-rates .rate-card small{color:var(--mfr-yellow);font-size:.62rem;font-weight:850;letter-spacing:.13em;text-transform:uppercase}
+body[data-page="alquiler"] .mfr-rates .rate-card h3{margin:13px 0 26px;font-size:1.55rem;letter-spacing:-.035em}
+body[data-page="alquiler"] .mfr-rates .rate-row{display:flex;justify-content:space-between;gap:18px;padding:14px 0;border-top:1px solid rgba(255,255,255,.12);font-size:.82rem;color:rgba(255,255,255,.58)}
+body[data-page="alquiler"] .mfr-rates .rate-row strong{color:#fff;font-size:.88rem}
+body[data-page="alquiler"] .mfr-terms{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:1px;background:rgba(255,255,255,.14)}
+body[data-page="alquiler"] .mfr-term{padding:22px;background:#0f1316}
+body[data-page="alquiler"] .mfr-term small{display:block;font-size:.57rem;font-weight:850;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+body[data-page="alquiler"] .mfr-term strong{display:block;margin-top:7px;font-size:.88rem;color:#fff}
+
+body[data-page="alquiler"] .mfr-enquiry{padding:112px 0;background:#fff}
+body[data-page="alquiler"] .mfr-enquiry-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:90px;align-items:start}
+body[data-page="alquiler"] .mfr-enquiry-copy{position:sticky;top:110px}
+body[data-page="alquiler"] .mfr-enquiry-copy .mfr-title{font-size:clamp(3rem,4.6vw,5rem)}
+body[data-page="alquiler"] .mfr-enquiry-copy .mfr-copy{margin-top:24px}
+body[data-page="alquiler"] .mfr-contact-lines{margin-top:32px;border-top:1px solid var(--mfr-line)}
+body[data-page="alquiler"] .mfr-contact-lines a{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid var(--mfr-line);color:inherit;text-decoration:none}
+body[data-page="alquiler"] .mfr-contact-lines span{font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#858c91}
+body[data-page="alquiler"] .mfr-contact-lines strong{font-size:.85rem}
+body[data-page="alquiler"] .mfr-form-shell{padding:42px;background:var(--mfr-soft);border-top:6px solid var(--mfr-yellow)}
+body[data-page="alquiler"] .mfr-form-intro{display:flex;justify-content:space-between;gap:30px;margin-bottom:30px}
+body[data-page="alquiler"] .mfr-form-intro h2{margin:0;font-size:2.25rem;font-weight:650;letter-spacing:-.045em}
+body[data-page="alquiler"] .mfr-form-intro p{max-width:390px;margin:2px 0 0;font-size:.82rem;line-height:1.6;color:var(--mfr-muted)}
+body[data-page="alquiler"] .mfr-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+body[data-page="alquiler"] .mfr-field{display:flex;flex-direction:column;gap:7px}
+body[data-page="alquiler"] .mfr-field.full{grid-column:1/-1}
+body[data-page="alquiler"] .mfr-field label{font-size:.59rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase;color:#747b80}
+body[data-page="alquiler"] .mfr-field input,
+body[data-page="alquiler"] .mfr-field select,
+body[data-page="alquiler"] .mfr-field textarea{width:100%;min-height:52px;border:1px solid #cfd3d4;border-radius:0;background:#fff;color:var(--mfr-ink);padding:14px 15px;font:inherit;font-size:.88rem;outline:none}
+body[data-page="alquiler"] .mfr-field textarea{min-height:110px;resize:vertical}
+body[data-page="alquiler"] .mfr-field input:focus,
+body[data-page="alquiler"] .mfr-field select:focus,
+body[data-page="alquiler"] .mfr-field textarea:focus{border-color:#978d00;box-shadow:0 0 0 1px #978d00}
+body[data-page="alquiler"] .mfr-form-actions{grid-column:1/-1;display:grid;grid-template-columns:1fr auto;gap:9px;margin-top:7px}
+body[data-page="alquiler"] .mfr-form-actions .button{min-height:52px;justify-content:center}
+body[data-page="alquiler"] .mfr-form-actions .button.primary{background:var(--mfr-ink);border-color:var(--mfr-ink);color:#fff}
+body[data-page="alquiler"] .mfr-form-note{grid-column:1/-1;margin:2px 0 0;font-size:.69rem;line-height:1.5;color:#858b90}
+
+body[data-page="alquiler"] .mfr-final{padding:76px 0;background:var(--mfr-yellow)}
+body[data-page="alquiler"] .mfr-final-grid{display:flex;justify-content:space-between;gap:48px;align-items:end}
+body[data-page="alquiler"] .mfr-final .mfr-title{max-width:850px;font-size:clamp(2.8rem,4.6vw,5rem)}
+body[data-page="alquiler"] .mfr-final-actions{display:flex;gap:9px;flex-wrap:wrap}
+body[data-page="alquiler"] .mfr-final .button.primary{background:var(--mfr-ink);border-color:var(--mfr-ink);color:#fff}
+body[data-page="alquiler"] .mfr-final .button.secondary{border-color:rgba(11,13,15,.35);color:var(--mfr-ink)}
+
+@media (max-width:1100px){
+  body[data-page="alquiler"] .mfr-hero-grid{grid-template-columns:1fr}
+  body[data-page="alquiler"] .mfr-hero-media{min-height:560px}
+  body[data-page="alquiler"] .mfr-hero-copy{padding:72px 48px;border-left:0;border-top:1px solid rgba(255,255,255,.12)}
+  body[data-page="alquiler"] .mfr-uses-head,body[data-page="alquiler"] .mfr-rates-head{grid-template-columns:1fr;gap:28px}
+  body[data-page="alquiler"] .mfr-use-row{grid-template-columns:58px minmax(0,.8fr) minmax(280px,1.2fr) 40px;gap:20px}
+  body[data-page="alquiler"] .mfr-industrial-grid{grid-template-columns:1fr}
+  body[data-page="alquiler"] .mfr-industrial-media{min-height:520px}
+  body[data-page="alquiler"] .mfr-rates .rates-grid{grid-template-columns:1fr 1fr}
+  body[data-page="alquiler"] .mfr-rates .rate-card:last-child{grid-column:1/-1}
+  body[data-page="alquiler"] .mfr-enquiry-grid{grid-template-columns:1fr;gap:44px}
+  body[data-page="alquiler"] .mfr-enquiry-copy{position:static}
+}
+
+@media (max-width:720px){
+  body[data-page="alquiler"] .container{width:calc(100% - 28px)}
+  body[data-page="alquiler"] .mfr-hero{padding-top:62px}
+  body[data-page="alquiler"] .mfr-hero-grid{display:flex;flex-direction:column}
+  body[data-page="alquiler"] .mfr-hero-media{order:1;height:57svh;max-height:600px;min-height:0}
+  body[data-page="alquiler"] .mfr-hero-media img{object-position:center}
+  body[data-page="alquiler"] .mfr-hero-badge{left:16px;bottom:16px}
+  body[data-page="alquiler"] .mfr-hero-copy{order:2;padding:34px 18px 38px;border:0;border-top:6px solid var(--mfr-yellow)}
+  body[data-page="alquiler"] .mfr-hero-copy .mfr-kicker{display:none}
+  body[data-page="alquiler"] .mfr-hero h1{font-size:clamp(3rem,14vw,4.05rem);line-height:.86}
+  body[data-page="alquiler"] .mfr-hero-copy>p{margin-top:21px;font-size:.93rem;line-height:1.62}
+  body[data-page="alquiler"] .mfr-hero-actions{grid-template-columns:1fr;gap:8px;margin-top:25px}
+  body[data-page="alquiler"] .mfr-hero-facts{grid-template-columns:1fr;margin-top:30px}
+  body[data-page="alquiler"] .mfr-hero-facts div{display:grid;grid-template-columns:105px 1fr;gap:15px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+  body[data-page="alquiler"] .mfr-hero-facts div+div{padding-left:0;border-left:0}
+  body[data-page="alquiler"] .mfr-hero-facts strong{margin-top:0}
+  body[data-page="alquiler"] .mfr-uses{padding:72px 0}
+  body[data-page="alquiler"] .mfr-title{font-size:clamp(2.55rem,12vw,3.65rem)}
+  body[data-page="alquiler"] .mfr-copy{font-size:.92rem;line-height:1.65}
+  body[data-page="alquiler"] .mfr-uses-head{margin-bottom:30px}
+  body[data-page="alquiler"] .mfr-use-row{grid-template-columns:36px 1fr 30px;gap:10px 12px;align-items:start;padding:22px 0}
+  body[data-page="alquiler"] .mfr-use-row>span{grid-column:1;padding-top:5px}
+  body[data-page="alquiler"] .mfr-use-row h3{grid-column:2;font-size:1.55rem}
+  body[data-page="alquiler"] .mfr-use-row p{grid-column:2/-1;margin-top:3px;font-size:.81rem;line-height:1.55}
+  body[data-page="alquiler"] .mfr-use-row i{grid-column:3;grid-row:1;width:30px;height:30px}
+  body[data-page="alquiler"] .mfr-industrial-grid{display:flex;flex-direction:column}
+  body[data-page="alquiler"] .mfr-industrial-media{order:1;height:310px;min-height:0}
+  body[data-page="alquiler"] .mfr-industrial-copy{order:2;padding:36px 18px 42px;border-left:5px solid var(--mfr-yellow)}
+  body[data-page="alquiler"] .mfr-industrial-copy .mfr-title{font-size:2.65rem}
+  body[data-page="alquiler"] .mfr-rates{padding:70px 0}
+  body[data-page="alquiler"] .mfr-rates-head{margin-bottom:30px}
+  body[data-page="alquiler"] .mfr-rates-head .mfr-title{font-size:2.85rem}
+  body[data-page="alquiler"] .mfr-rates .rates-grid{grid-template-columns:1fr;gap:10px;background:transparent}
+  body[data-page="alquiler"] .mfr-rates .rate-card:last-child{grid-column:auto}
+  body[data-page="alquiler"] .mfr-rates .rate-card{padding:24px 20px}
+  body[data-page="alquiler"] .mfr-terms{grid-template-columns:1fr;gap:1px}
+  body[data-page="alquiler"] .mfr-enquiry{padding:72px 0}
+  body[data-page="alquiler"] .mfr-enquiry-copy .mfr-title{font-size:2.8rem}
+  body[data-page="alquiler"] .mfr-contact-lines a{display:grid;grid-template-columns:90px 1fr;align-items:start}
+  body[data-page="alquiler"] .mfr-form-shell{margin-inline:-14px;padding:30px 18px 32px}
+  body[data-page="alquiler"] .mfr-form-intro{display:block;margin-bottom:25px}
+  body[data-page="alquiler"] .mfr-form-intro h2{font-size:1.95rem}
+  body[data-page="alquiler"] .mfr-form-intro p{margin-top:12px}
+  body[data-page="alquiler"] .mfr-form{grid-template-columns:1fr}
+  body[data-page="alquiler"] .mfr-field.full{grid-column:auto}
+  body[data-page="alquiler"] .mfr-form-actions{grid-column:auto;grid-template-columns:1fr}
+  body[data-page="alquiler"] .mfr-form-actions .button{width:100%}
+  body[data-page="alquiler"] .mfr-form-note{grid-column:auto}
+  body[data-page="alquiler"] .mfr-final{padding:56px 0}
+  body[data-page="alquiler"] .mfr-final-grid{display:block}
+  body[data-page="alquiler"] .mfr-final .mfr-title{font-size:2.85rem}
+  body[data-page="alquiler"] .mfr-final-actions{display:grid;grid-template-columns:1fr;gap:8px;margin-top:28px}
+  body[data-page="alquiler"] .mfr-final-actions .button{width:100%;justify-content:center}
+}
+
+@media (max-width:390px){
+  body[data-page="alquiler"] .mfr-hero-media{height:52svh}
+  body[data-page="alquiler"] .mfr-hero h1{font-size:2.85rem}
+  body[data-page="alquiler"] .mfr-title,body[data-page="alquiler"] .mfr-industrial-copy .mfr-title{font-size:2.4rem}
+}
