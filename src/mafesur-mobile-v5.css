@@ -1,0 +1,117 @@
+/* Mafesur Mobile v5 — recover brand character without losing precision */
+@media (max-width:720px){
+  body[data-page="home"]{
+    --mfm-yellow:#e2d51f;
+    --mfm-ink:#0b0d0f;
+    --mfm-paper:#f6f6f3;
+    background:#fff;
+  }
+
+  body[data-page="home"] .page{overflow:hidden}
+  body[data-page="home"] .container{width:calc(100% - 28px)}
+  body[data-page="home"] .section{padding:70px 0}
+
+  /* Hero: photo first, place first, Mafesur first */
+  body[data-page="home"] .mf-hero{padding-top:62px;background:var(--mfm-ink)}
+  body[data-page="home"] .mf-hero-grid{display:flex;flex-direction:column;min-height:0}
+  body[data-page="home"] .mf-hero-media{order:1;min-height:0;height:58svh;max-height:610px;background:#121518}
+  body[data-page="home"] .mf-hero-media img{height:100%;object-fit:cover;object-position:58% center;filter:saturate(1.02) contrast(1.05)}
+  body[data-page="home"] .mf-hero-media::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,6,8,.02) 30%,rgba(4,6,8,.78) 100%);z-index:1;pointer-events:none}
+  body[data-page="home"] .mf-hero-media::after{display:none}
+  body[data-page="home"] .mf-hero-caption{left:18px;right:18px;bottom:18px;display:block;z-index:2}
+  body[data-page="home"] .mf-hero-caption::before{content:"MAFESUR · ÉCIJA";display:block;width:max-content;margin-bottom:9px;padding:7px 9px;background:var(--mfm-yellow);color:#0b0d0f;font-size:.58rem;font-weight:900;letter-spacing:.13em}
+  body[data-page="home"] .mf-hero-caption strong{font-size:1rem;letter-spacing:-.02em}
+  body[data-page="home"] .mf-hero-caption span{display:none}
+
+  body[data-page="home"] .mf-hero-copy{order:2;position:relative;padding:34px 18px 38px;border:0;border-top:6px solid var(--mfm-yellow);background:var(--mfm-ink)}
+  body[data-page="home"] .mf-hero-copy .mf-kicker{display:none}
+  body[data-page="home"] .mf-hero h1{max-width:350px;font-size:clamp(3rem,14.5vw,4.1rem);line-height:.86;letter-spacing:-.078em}
+  body[data-page="home"] .mf-hero h1 span{margin-top:7px;color:var(--mfm-yellow)}
+  body[data-page="home"] .mf-hero-copy>p{margin-top:22px;max-width:355px;font-size:.94rem;line-height:1.62;color:rgba(255,255,255,.7)}
+  body[data-page="home"] .mf-hero-actions{display:grid;grid-template-columns:1fr;margin-top:26px;gap:8px}
+  body[data-page="home"] .mf-hero-actions .button{min-height:50px;width:100%;justify-content:center;border-radius:0}
+  body[data-page="home"] .mf-hero-actions .button.primary{background:var(--mfm-yellow);border-color:var(--mfm-yellow);color:#0b0d0f}
+  body[data-page="home"] .mf-hero-actions .button.secondary{background:transparent;border-color:rgba(255,255,255,.28);color:#fff}
+
+  body[data-page="home"] .mf-hero-facts{display:grid;grid-template-columns:1fr;margin-top:32px;border-top:1px solid rgba(255,255,255,.16)}
+  body[data-page="home"] .mf-hero-fact{display:grid;grid-template-columns:104px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+  body[data-page="home"] .mf-hero-fact + .mf-hero-fact{padding-left:0;border-left:0}
+  body[data-page="home"] .mf-hero-fact strong{font-size:.68rem;color:var(--mfm-yellow)}
+  body[data-page="home"] .mf-hero-fact span{margin:0;font-size:.69rem;line-height:1.45;color:rgba(255,255,255,.5)}
+
+  /* Titles carry more workshop/concession presence */
+  body[data-page="home"] .mf-kicker{margin-bottom:12px;color:#6b7176;font-size:.61rem;letter-spacing:.16em}
+  body[data-page="home"] .mf-title{font-size:clamp(2.55rem,12vw,3.65rem);line-height:.91;letter-spacing:-.068em}
+  body[data-page="home"] .mf-copy{font-size:.92rem;line-height:1.65}
+
+  /* Services: technical list, yellow indexing */
+  body[data-page="home"] .mf-service-intro{display:block;margin-bottom:30px}
+  body[data-page="home"] .mf-service-intro .mf-copy{margin-top:20px}
+  body[data-page="home"] .mf-service-stack{border-top:2px solid var(--mfm-ink)}
+  body[data-page="home"] .mf-service-row{position:relative;display:grid;grid-template-columns:38px 1fr 34px;gap:12px;padding:22px 0;align-items:start}
+  body[data-page="home"] .mf-service-row>span{grid-column:1;color:#9d9200;font-size:.64rem;padding-top:5px}
+  body[data-page="home"] .mf-service-row h3{grid-column:2;margin:0;font-size:1.55rem;line-height:.98;letter-spacing:-.045em}
+  body[data-page="home"] .mf-service-row p{grid-column:2/-1;margin-top:4px;font-size:.82rem;line-height:1.55}
+  body[data-page="home"] .mf-service-row i{grid-column:3;grid-row:1;width:30px;height:30px;border:0;background:var(--mfm-yellow);color:#0b0d0f;font-size:.92rem}
+
+  /* Stock: more dealership, less generic cards */
+  body[data-page="home"] .mf-stock{padding:72px 0 64px;background:#0b0d0f}
+  body[data-page="home"] .mf-stock-head{display:block;margin-bottom:30px}
+  body[data-page="home"] .mf-stock .mf-kicker{color:var(--mfm-yellow)}
+  body[data-page="home"] .mf-stock .mf-copy{margin-top:18px}
+  body[data-page="home"] .mf-stock-grid.vehicle-preview-grid{display:grid;grid-template-columns:1fr;gap:12px;background:transparent}
+  body[data-page="home"] .mf-stock-grid .vehicle-preview-card,
+  body[data-page="home"] .mf-stock-grid .vehicle-preview-card:last-child{grid-column:auto;background:#15191d;border-top:3px solid transparent}
+  body[data-page="home"] .mf-stock-grid .vehicle-preview-card:first-child{border-top-color:var(--mfm-yellow)}
+  body[data-page="home"] .mf-stock-grid .vehicle-preview-card>a{aspect-ratio:1.43/1}
+  body[data-page="home"] .mf-stock-grid .vehicle-preview-card>div{min-height:0;padding:20px!important}
+  body[data-page="home"] .mf-stock-grid .vehicle-preview-card h4{font-size:1.55rem;line-height:1.02}
+  body[data-page="home"] .mf-stock-grid .vehicle-preview-card .price{font-size:1.45rem;color:var(--mfm-yellow)}
+  body[data-page="home"] .mf-stock-actions{margin-top:18px}
+  body[data-page="home"] .mf-stock-actions .button{width:100%;justify-content:center;background:var(--mfm-yellow);border-color:var(--mfm-yellow);color:#0b0d0f}
+
+  /* Workshop: image and yellow workshop marker */
+  body[data-page="home"] .mf-workshop-grid{display:flex;flex-direction:column;background:#f1f2f0}
+  body[data-page="home"] .mf-workshop-media{order:1;min-height:0;height:310px}
+  body[data-page="home"] .mf-workshop-media img{object-position:center;filter:saturate(.95) contrast(1.05)}
+  body[data-page="home"] .mf-workshop-copy{order:2;position:relative;padding:34px 20px 38px;border-left:5px solid var(--mfm-yellow)}
+  body[data-page="home"] .mf-workshop-copy .mf-title{font-size:2.7rem}
+  body[data-page="home"] .mf-workshop-list{margin-top:26px}
+  body[data-page="home"] .mf-workshop-list div{grid-template-columns:30px 1fr;padding:14px 0}
+  body[data-page="home"] .mf-workshop-list span{color:#8d8300}
+  body[data-page="home"] .mf-workshop-copy .button-row{display:grid;grid-template-columns:1fr;gap:8px}
+  body[data-page="home"] .mf-workshop-copy .button{width:100%;justify-content:center}
+
+  /* Rental keeps white breathing room but gets a stronger image */
+  body[data-page="home"] .mf-rental-grid{gap:28px}
+  body[data-page="home"] .mf-rental-types{border-top:2px solid var(--mfm-ink)}
+  body[data-page="home"] .mf-rental-type{grid-template-columns:38px 1fr;gap:12px;padding:18px 0}
+  body[data-page="home"] .mf-rental-type span{color:#8d8300}
+  body[data-page="home"] .mf-rental-type h3{font-size:1.25rem}
+  body[data-page="home"] .mf-rental-image{margin:10px -14px 0;aspect-ratio:auto;height:310px}
+  body[data-page="home"] .mf-rental-image img{object-fit:cover;filter:saturate(1)}
+
+  /* Place: local business, not abstract corporate block */
+  body[data-page="home"] .mf-place-grid{display:flex;flex-direction:column}
+  body[data-page="home"] .mf-place-media{order:1;min-height:0;height:360px}
+  body[data-page="home"] .mf-place-copy{order:2;padding:38px 18px 42px;border:0;border-top:6px solid var(--mfm-yellow)}
+  body[data-page="home"] .mf-place-copy .mf-title{font-size:2.65rem}
+  body[data-page="home"] .mf-place-copy .mf-copy{margin-top:18px}
+  body[data-page="home"] .mf-place-copy .button-row{display:grid;grid-template-columns:1fr;gap:8px}
+  body[data-page="home"] .mf-place-copy .button{width:100%;justify-content:center}
+  body[data-page="home"] .mf-place-copy .button.secondary{border-color:rgba(255,255,255,.3);color:#fff}
+
+  body[data-page="home"] .mf-final{padding:56px 0;background:var(--mfm-yellow)}
+  body[data-page="home"] .mf-final-grid{display:block}
+  body[data-page="home"] .mf-final .mf-title{font-size:2.9rem;color:#0b0d0f}
+  body[data-page="home"] .mf-final-actions{display:grid;grid-template-columns:1fr;gap:8px;margin-top:28px}
+  body[data-page="home"] .mf-final-actions .button{width:100%;justify-content:center}
+}
+
+@media (max-width:390px){
+  body[data-page="home"] .mf-hero-media{height:53svh}
+  body[data-page="home"] .mf-hero h1{font-size:2.85rem}
+  body[data-page="home"] .mf-title{font-size:2.45rem}
+  body[data-page="home"] .mf-workshop-copy .mf-title,
+  body[data-page="home"] .mf-place-copy .mf-title{font-size:2.45rem}
+}
