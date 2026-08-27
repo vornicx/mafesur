@@ -1,0 +1,107 @@
+/* Mafesur Shell v4 — global identity, navigation, footer, motion */
+:root{
+  --ink:#0b0d0f;
+  --ink-2:#171a1e;
+  --navy:#0b0d0f;
+  --blue:#0b0d0f;
+  --accent:#e2d51f;
+  --paper:#ffffff;
+  --paper-2:#f3f4f2;
+  --line:#d9dddf;
+  --muted:#626970;
+  --serif:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+.button{border-radius:0;box-shadow:none!important}
+.button.primary{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+.button.primary:hover{background:#f0e329;border-color:#f0e329}
+.button.secondary,.button.secondary-dark{border-color:#aeb4b8}
+.kicker{font-family:var(--sans);font-weight:800;color:#6b7176}
+.kicker::before{width:18px}
+
+/* Header */
+.site-header{height:76px;background:rgba(255,255,255,.94);border-bottom:1px solid rgba(11,13,15,.1);backdrop-filter:blur(18px);box-shadow:none}
+.site-header.is-scrolled{height:68px;border-color:#d9dddf;box-shadow:0 8px 28px rgba(11,13,15,.06)}
+.header-inner{width:min(1380px,calc(100% - 56px))}
+.brand-link{gap:12px}
+.brand-link img{width:190px;max-height:44px;object-fit:contain}
+.brand-meta{padding-left:12px;border-left:1px solid #d9dddf}
+.brand-meta strong{font-family:var(--sans);font-size:.76rem;font-weight:750;color:#0b0d0f}
+.brand-meta span{font-family:var(--sans);font-size:.57rem;font-weight:800;letter-spacing:.12em;color:#71787d}
+.desktop-nav{gap:24px}
+.desktop-nav a{font-family:var(--sans);font-size:.76rem;font-weight:750;color:#5c6368}
+.desktop-nav a::after{height:3px;background:var(--accent)}
+.desktop-nav a:hover,.desktop-nav a.active{color:#0b0d0f}
+.header-number{font-size:.74rem;font-weight:750;color:#60676c}
+.header-cta .button.primary{min-height:42px;padding-inline:16px;background:var(--accent);border-color:var(--accent);color:#0b0d0f}
+.menu-toggle{border:1px solid #cfd3d4;background:#fff;border-radius:0}
+.menu-toggle span,.menu-toggle::before,.menu-toggle::after{background:#0b0d0f}
+
+/* Mobile nav becomes Mafesur, not generic premium template */
+.mobile-nav-shell{padding:0 20px 24px;background:#0b0d0f;color:#fff;border-left:0;box-shadow:-26px 0 80px rgba(0,0,0,.28)}
+.mobile-nav-top{height:78px;border-bottom:1px solid rgba(255,255,255,.14)}
+.mobile-nav-brand img{width:148px;max-height:42px;object-fit:contain;background:#fff;padding:5px 7px}
+.mobile-nav-close{border:1px solid rgba(255,255,255,.22);background:transparent;color:#fff;border-radius:0}
+.mobile-nav-links{padding:12px 0}
+.mobile-nav-links a{min-height:62px;border-bottom:1px solid rgba(255,255,255,.13);font-family:var(--sans);font-size:1.48rem;font-weight:650;letter-spacing:-.045em;color:#fff}
+.mobile-nav-links a::after{font-family:var(--sans);color:rgba(255,255,255,.34)}
+.mobile-nav-links a.active{color:var(--accent)}
+.mobile-nav-links a.active::before{content:"";width:7px;height:7px;margin-right:10px;background:var(--accent);flex:0 0 auto}
+.mobile-nav-contact{padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}
+.mobile-nav-contact small{font-size:.58rem;font-weight:850;letter-spacing:.14em;color:rgba(255,255,255,.4)}
+.mobile-nav-phone{margin:9px 0 14px;font-family:var(--sans);font-size:1.65rem;font-weight:650;color:#fff}
+.mobile-nav-contact .button.primary{width:100%;background:var(--accent);border-color:var(--accent);color:#0b0d0f}
+.nav-backdrop{background:rgba(5,7,8,.62)}
+
+/* Mobile action dock */
+.mobile-action-dock{background:#0b0d0f!important;border-top:3px solid var(--accent)!important;box-shadow:0 -12px 30px rgba(0,0,0,.18)!important}
+.mobile-action-dock .mobile-action{color:#fff!important;font-family:var(--sans)!important;border-radius:0!important}
+.mobile-action-dock .mobile-action.primary{background:var(--accent)!important;color:#0b0d0f!important}
+.mobile-action-dock svg{width:19px;height:19px}
+
+/* Footer */
+.site-footer{background:#0b0d0f!important;color:#fff!important;border-top:6px solid var(--accent)!important}
+.footer-grid{width:min(1380px,calc(100% - 64px))!important}
+.footer-brand img{background:#fff;padding:6px 8px;max-width:210px}
+.footer-brand p,.footer-group span,.footer-copy{color:rgba(255,255,255,.5)!important}
+.footer-group strong{font-family:var(--sans)!important;font-size:.62rem!important;font-weight:850!important;letter-spacing:.14em!important;text-transform:uppercase;color:var(--accent)!important}
+.footer-group a{color:#fff!important;font-family:var(--sans)!important}
+
+/* Purposeful motion */
+@media (hover:hover) and (pointer:fine){
+  .mfw-hero-media img,.mfr-hero-media img,.mfa-hero-media img,.mfc-hero-media img,
+  .mfw-method-media img,.mfr-industrial-media img,.mfa-now-media img,.mfc-final img{
+    transition:transform 1s cubic-bezier(.22,1,.36,1),filter .5s ease;
+  }
+  .mfw-hero-media:hover img,.mfr-hero-media:hover img,.mfa-hero-media:hover img,.mfc-hero-media:hover img,
+  .mfw-method-media:hover img,.mfr-industrial-media:hover img,.mfa-now-media:hover img{transform:scale(1.018)}
+  .mfr-use-row i,.mfc-detail-row i{transition:transform .25s cubic-bezier(.22,1,.36,1),background .25s ease}
+  .mfr-use-row:hover i,.mfc-detail-row:hover i{transform:translateX(4px);background:#f0e329}
+}
+
+:focus-visible{outline:2px solid #0b0d0f;outline-offset:3px}
+.site-header :focus-visible,.site-footer :focus-visible,.mobile-nav :focus-visible{outline-color:var(--accent)}
+
+@media(max-width:900px){
+  .site-header{height:64px;background:#fff}
+  .site-header.is-scrolled{height:60px}
+  .header-inner{width:calc(100% - 28px)}
+  .brand-link img{width:150px;max-height:38px}
+  .brand-meta,.header-number,.header-cta>.button{display:none}
+  .menu-toggle{display:block;width:42px;height:42px}
+  .mobile-nav{width:min(420px,100vw)}
+  .footer-grid{width:calc(100% - 32px)!important}
+}
+
+@media(max-width:720px){
+  .site-header{border-bottom-color:#dfe2e4}
+  .brand-link img{width:142px}
+  .mobile-nav-shell{padding-inline:18px}
+  .mobile-nav-links a{font-size:1.4rem}
+  .site-footer{padding-bottom:calc(92px + env(safe-area-inset-bottom))!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .site-header,.mobile-nav-shell,.button,.reveal,img{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
