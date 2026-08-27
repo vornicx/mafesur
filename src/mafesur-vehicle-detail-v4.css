@@ -32,5 +32,24 @@ body[data-page="vehiculo"] .enquiry-card .button-row{display:grid!important;grid
 body[data-page="vehiculo"] .enquiry-card .button{width:100%;min-height:50px!important}
 body[data-page="vehiculo"] .enquiry-card .primary{background:#0b0d0f!important;border-color:#0b0d0f!important;color:#fff!important}
 body[data-page="vehiculo"] .enquiry-card .secondary{background:#fff!important;border-color:#bfc4c8!important;color:#0b0d0f!important}
-@media(max-width:980px){body[data-page="vehiculo"] .vehicle-detail-grid{grid-template-columns:1fr!important}body[data-page="vehiculo"] .detail-panel{position:static!important}body[data-page="vehiculo"] .vehicle-detail-shell{padding-top:98px!important}}
-@media(max-width:720px){body[data-page="vehiculo"] .vehicle-detail-shell{padding:88px 0 72px!important}body[data-page="vehiculo"] .vehicle-detail-grid{width:calc(100% - 32px);gap:30px!important}body[data-page="vehiculo"] .vehicle-title{font-size:clamp(2.8rem,13vw,4.5rem)!important}body[data-page="vehiculo"] .gallery-main{aspect-ratio:1.18/1}body[data-page="vehiculo"] .thumb-grid{grid-template-columns:repeat(3,1fr)!important}body[data-page="vehiculo"] .detail-panel{padding:24px!important}body[data-page="vehiculo"] .detail-panel>.price{font-size:3rem!important}}
+
+@media(max-width:980px){
+  body[data-page="vehiculo"] .vehicle-detail-grid{grid-template-columns:1fr!important}
+  body[data-page="vehiculo"] .detail-panel{position:static!important}
+  body[data-page="vehiculo"] .vehicle-detail-shell{padding-top:98px!important}
+}
+
+@media(max-width:720px){
+  body[data-page="vehiculo"] .vehicle-detail-shell{padding:64px 0 72px!important}
+  body[data-page="vehiculo"] .vehicle-detail-grid{width:calc(100% - 32px);gap:30px!important}
+  body[data-page="vehiculo"] .gallery-panel{margin-inline:-16px;padding:32px 16px 16px;background:#0b0d0f;border-top:6px solid #e2d51f;color:#fff}
+  body[data-page="vehiculo"] .gallery-panel>.kicker{display:inline-flex;padding:7px 9px;background:#e2d51f;color:#0b0d0f!important;font-size:.58rem;font-weight:850;letter-spacing:.12em}
+  body[data-page="vehiculo"] .vehicle-title{margin-top:18px!important;font-size:clamp(2.85rem,13vw,4.5rem)!important;line-height:.86!important;color:#fff!important}
+  body[data-page="vehiculo"] .gallery-panel>.lead{margin-top:17px!important;color:rgba(255,255,255,.62)!important;font-size:.88rem!important;line-height:1.58!important}
+  body[data-page="vehiculo"] .gallery-main{margin-top:24px!important;aspect-ratio:1.16/1}
+  body[data-page="vehiculo"] .thumb-grid{grid-template-columns:repeat(3,1fr)!important;margin-bottom:0!important}
+  body[data-page="vehiculo"] .thumb-grid button.is-active{border-color:#e2d51f!important}
+  body[data-page="vehiculo"] .detail-panel{padding:24px!important;border-top:6px solid #e2d51f!important;background:#f3f4f2!important}
+  body[data-page="vehiculo"] .detail-panel>.price{font-size:3rem!important}
+  body[data-page="vehiculo"] .enquiry-card .primary{background:#e2d51f!important;border-color:#e2d51f!important;color:#0b0d0f!important}
+}
