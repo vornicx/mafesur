@@ -15,7 +15,8 @@ const jsFiles = [
   'src/js/catalog-normalize.js',
   'src/js/site.js',
   'src/js/enhancements.js',
-  'src/js/catalog-experience.js'
+  'src/js/catalog-experience.js',
+  'src/js/precision-v3.js'
 ];
 
 for (const file of jsFiles) {
