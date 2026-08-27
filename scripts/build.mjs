@@ -19,7 +19,8 @@ const jsFiles = [
   'src/js/precision-v3.js',
   'src/js/workshop-v4.js',
   'src/js/rental-v4.js',
-  'src/js/contact-v4.js'
+  'src/js/contact-v4.js',
+  'src/js/panel-v4.js'
 ];
 
 for (const file of jsFiles) {
