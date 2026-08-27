@@ -33,8 +33,14 @@ workshopV4Styles.rel = 'stylesheet';
 workshopV4Styles.href = '/mafesur-workshop-v4.css';
 document.head.appendChild(workshopV4Styles);
 
+const rentalV4Styles = document.createElement('link');
+rentalV4Styles.rel = 'stylesheet';
+rentalV4Styles.href = '/mafesur-rental-v4.css';
+document.head.appendChild(rentalV4Styles);
+
 await import('./app.js');
 await import('./enhancements.js');
 await import('./catalog-experience.js');
 await import('./precision-v3.js');
 await import('./workshop-v4.js');
+await import('./rental-v4.js');
