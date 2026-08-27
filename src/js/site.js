@@ -48,6 +48,11 @@ contactV4Styles.rel = 'stylesheet';
 contactV4Styles.href = '/mafesur-contact-v4.css';
 document.head.appendChild(contactV4Styles);
 
+const panelV4Styles = document.createElement('link');
+panelV4Styles.rel = 'stylesheet';
+panelV4Styles.href = '/mafesur-panel-v4.css';
+document.head.appendChild(panelV4Styles);
+
 await import('./app.js');
 await import('./enhancements.js');
 await import('./catalog-experience.js');
@@ -55,3 +60,4 @@ await import('./precision-v3.js');
 await import('./workshop-v4.js');
 await import('./rental-v4.js');
 await import('./contact-v4.js');
+await import('./panel-v4.js');
