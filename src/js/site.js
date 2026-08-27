@@ -33,6 +33,7 @@ const pageStyles = {
 
 (pageStyles[page] || []).forEach(loadStyle);
 loadStyle('/mafesur-shell-v4.css');
+loadStyle('/mafesur-balance-v6.css');
 
 await import('./app.js');
 await import('./enhancements.js');
