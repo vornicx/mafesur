@@ -23,6 +23,11 @@ vehicleDetailV4Styles.rel = 'stylesheet';
 vehicleDetailV4Styles.href = '/mafesur-vehicle-detail-v4.css';
 document.head.appendChild(vehicleDetailV4Styles);
 
+const mobileV5Styles = document.createElement('link');
+mobileV5Styles.rel = 'stylesheet';
+mobileV5Styles.href = '/mafesur-mobile-v5.css';
+document.head.appendChild(mobileV5Styles);
+
 await import('./app.js');
 await import('./enhancements.js');
 await import('./catalog-experience.js');
