@@ -6,7 +6,15 @@ const root = resolve(import.meta.dirname, '..');
 const src = resolve(root, 'src');
 const dist = resolve(root, 'dist');
 
+const nativeFetch = globalThis.fetch;
+globalThis.fetch = (input, init = {}) => nativeFetch(input, {
+  ...init,
+  signal: init.signal || AbortSignal.timeout(15000)
+});
+
+console.time('Mafesur asset sync');
 await import('./sync-assets.mjs');
+console.timeEnd('Mafesur asset sync');
 
 const jsFiles = [
   'src/js/app.js',
