@@ -28,7 +28,13 @@ mobileV5Styles.rel = 'stylesheet';
 mobileV5Styles.href = '/mafesur-mobile-v5.css';
 document.head.appendChild(mobileV5Styles);
 
+const workshopV4Styles = document.createElement('link');
+workshopV4Styles.rel = 'stylesheet';
+workshopV4Styles.href = '/mafesur-workshop-v4.css';
+document.head.appendChild(workshopV4Styles);
+
 await import('./app.js');
 await import('./enhancements.js');
 await import('./catalog-experience.js');
 await import('./precision-v3.js');
+await import('./workshop-v4.js');
