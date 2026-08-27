@@ -18,6 +18,11 @@ vehiclesV4Styles.rel = 'stylesheet';
 vehiclesV4Styles.href = '/mafesur-vehicles-v4.css';
 document.head.appendChild(vehiclesV4Styles);
 
+const vehicleDetailV4Styles = document.createElement('link');
+vehicleDetailV4Styles.rel = 'stylesheet';
+vehicleDetailV4Styles.href = '/mafesur-vehicle-detail-v4.css';
+document.head.appendChild(vehicleDetailV4Styles);
+
 await import('./app.js');
 await import('./enhancements.js');
 await import('./catalog-experience.js');
