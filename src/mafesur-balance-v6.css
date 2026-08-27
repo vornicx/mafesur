@@ -1,0 +1,147 @@
+/* Mafesur Balance v6 — identity with restraint, automotive professionalism first */
+:root{
+  --mfb-ink:#0d0f11;
+  --mfb-graphite:#171a1d;
+  --mfb-paper:#ffffff;
+  --mfb-soft:#f3f4f2;
+  --mfb-line:#dfe2e3;
+  --mfb-muted:#656b70;
+  --mfb-yellow:#d3c82b;
+}
+
+/* Accent discipline: yellow is a signature, never the surface */
+.button.primary{background:var(--mfb-ink)!important;border-color:var(--mfb-ink)!important;color:#fff!important}
+.button.primary:hover{background:#24282b!important;border-color:#24282b!important}
+.kicker{color:var(--mfb-muted)!important}
+.kicker::before{background:var(--mfb-yellow)!important}
+
+/* Global shell: quieter, more dealership / established business */
+.site-header{background:rgba(255,255,255,.96)!important;border-bottom-color:rgba(13,15,17,.09)!important}
+.desktop-nav a::after{height:2px!important;background:var(--mfb-yellow)!important}
+.header-cta .button.primary{background:var(--mfb-ink)!important;border-color:var(--mfb-ink)!important;color:#fff!important}
+.mobile-nav-shell{background:#141719!important}
+.mobile-nav-links a.active{color:#fff!important}
+.mobile-nav-links a.active::before{width:4px!important;height:18px!important;background:var(--mfb-yellow)!important}
+.mobile-nav-contact .button.primary{background:#fff!important;border-color:#fff!important;color:var(--mfb-ink)!important}
+.mobile-action-dock{background:#fff!important;border-top:2px solid var(--mfb-yellow)!important;box-shadow:0 -10px 26px rgba(13,15,17,.10)!important}
+.mobile-action-dock .mobile-action{color:var(--mfb-ink)!important}
+.mobile-action-dock .mobile-action.primary{background:var(--mfb-ink)!important;color:#fff!important}
+.site-footer{background:#111416!important;border-top:2px solid var(--mfb-yellow)!important}
+.footer-group strong{color:rgba(255,255,255,.46)!important}
+
+/* Large yellow closing bands were too loud. Keep the signature as a line. */
+body[data-page="home"] .mf-final,
+body[data-page="taller"] .mfw-local,
+body[data-page="alquiler"] .mfr-final,
+body[data-page="nosotros"] .mfa-final,
+body[data-page="contacto"] .mfc-final{
+  background:var(--mfb-soft)!important;
+  color:var(--mfb-ink)!important;
+  border-top:3px solid var(--mfb-yellow)!important;
+}
+body[data-page="home"] .mf-final .mf-title,
+body[data-page="taller"] .mfw-local .mfw-title,
+body[data-page="alquiler"] .mfr-final .mfr-title,
+body[data-page="nosotros"] .mfa-final .mfa-title,
+body[data-page="contacto"] .mfc-final .mfc-title{color:var(--mfb-ink)!important}
+body[data-page="home"] .mf-final .mf-kicker,
+body[data-page="taller"] .mfw-local .mfw-kicker,
+body[data-page="alquiler"] .mfr-final .mfr-kicker,
+body[data-page="nosotros"] .mfa-final .mfa-kicker,
+body[data-page="contacto"] .mfc-final .mfc-kicker{color:var(--mfb-muted)!important}
+body[data-page="home"] .mf-final .button.primary,
+body[data-page="alquiler"] .mfr-final .button.primary,
+body[data-page="nosotros"] .mfa-final .button.primary{background:var(--mfb-ink)!important;border-color:var(--mfb-ink)!important;color:#fff!important}
+
+/* Dark heroes: identity through type, photography and one accent detail — not yellow words */
+body[data-page="home"] .mf-hero h1 span,
+body[data-page="taller"] .mfw-hero h1 span,
+body[data-page="alquiler"] .mfr-hero h1 span,
+body[data-page="nosotros"] .mfa-hero h1 span,
+body[data-page="contacto"] .mfc-hero h1 span{color:rgba(255,255,255,.54)!important}
+body[data-page="taller"] .mfw-hero-copy .mfw-kicker,
+body[data-page="alquiler"] .mfr-hero-copy .mfr-kicker,
+body[data-page="nosotros"] .mfa-hero-copy .mfa-kicker,
+body[data-page="contacto"] .mfc-hero-copy .mfc-kicker{color:rgba(255,255,255,.52)!important}
+body[data-page="taller"] .mfw-hero-actions .button.primary,
+body[data-page="alquiler"] .mfr-hero-actions .button.primary,
+body[data-page="contacto"] .mfc-actions .button.primary{background:#fff!important;border-color:#fff!important;color:var(--mfb-ink)!important}
+
+/* Small markers: keep yellow as a line, remove sticker feeling */
+body[data-page="taller"] .mfw-hero-marker span,
+body[data-page="alquiler"] .mfr-hero-badge,
+body[data-page="contacto"] .mfc-location-badge{
+  background:rgba(13,15,17,.74)!important;
+  color:#fff!important;
+  border-left:3px solid var(--mfb-yellow)!important;
+  padding:8px 10px!important;
+}
+body[data-page="taller"] .mfw-form-shell{border-top:2px solid rgba(255,255,255,.18)!important}
+body[data-page="taller"] .mfw-form-actions .button.primary{background:#fff!important;border-color:#fff!important;color:var(--mfb-ink)!important}
+body[data-page="taller"] .mfw-service-list .service-row:hover{background:#f7f8f6!important}
+
+/* Catalogue: product and price first; accent only in editorial details */
+body[data-page="vehiculos"] .mf-catalog-hero .kicker{color:rgba(255,255,255,.54)!important}
+body[data-page="vehiculos"] .vehicle-card .badge{background:rgba(13,15,17,.90)!important;color:#fff!important;border-left:3px solid var(--mfb-yellow)!important}
+body[data-page="vehiculos"] .vehicle-actions .dark{background:var(--mfb-ink)!important;border-color:var(--mfb-ink)!important}
+body[data-page="vehiculos"] .catalog-controls input:focus,
+body[data-page="vehiculos"] .catalog-controls select:focus{outline-color:var(--mfb-yellow)!important}
+
+/* Vehicle detail: no yellow slabs; one subtle accent edge is enough */
+body[data-page="vehiculo"] .detail-panel{border-top:2px solid var(--mfb-yellow)!important}
+body[data-page="vehiculo"] .detail-panel>.kicker{color:#6f746e!important}
+body[data-page="vehiculo"] .highlight-list li::before{color:#8d861e!important}
+body[data-page="vehiculo"] .enquiry-card .primary{background:var(--mfb-ink)!important;border-color:var(--mfb-ink)!important;color:#fff!important}
+
+@media(max-width:720px){
+  /* Home mobile: photo-led and recognisable, but calm */
+  body[data-page="home"] .mf-hero-media{height:52svh!important;max-height:560px!important}
+  body[data-page="home"] .mf-hero-media img{filter:saturate(.94) contrast(1.02)!important}
+  body[data-page="home"] .mf-hero-caption::before{
+    content:"MAFESUR · ÉCIJA"!important;
+    background:transparent!important;
+    color:#fff!important;
+    border-left:3px solid var(--mfb-yellow)!important;
+    padding:1px 0 1px 9px!important;
+    font-size:.57rem!important;
+  }
+  body[data-page="home"] .mf-hero-copy{border-top:1px solid rgba(255,255,255,.12)!important;padding-top:38px!important}
+  body[data-page="home"] .mf-hero h1{font-size:clamp(2.85rem,13vw,3.8rem)!important;line-height:.89!important}
+  body[data-page="home"] .mf-hero h1 span{margin-top:5px!important;color:rgba(255,255,255,.55)!important}
+  body[data-page="home"] .mf-hero-actions .button.primary{background:#fff!important;border-color:#fff!important;color:var(--mfb-ink)!important}
+  body[data-page="home"] .mf-hero-fact strong{color:#fff!important}
+  body[data-page="home"] .mf-service-row i{background:transparent!important;border:1px solid #cfd3d5!important;color:var(--mfb-ink)!important}
+  body[data-page="home"] .mf-service-row>span,
+  body[data-page="home"] .mf-rental-type span,
+  body[data-page="home"] .mf-workshop-list span{color:#858b90!important}
+  body[data-page="home"] .mf-stock-grid .vehicle-preview-card:first-child{border-top-color:transparent!important}
+  body[data-page="home"] .mf-stock-grid .vehicle-preview-card .price{color:#fff!important}
+  body[data-page="home"] .mf-stock-actions .button{background:#fff!important;border-color:#fff!important;color:var(--mfb-ink)!important}
+  body[data-page="home"] .mf-workshop-copy{border-left:0!important;border-top:1px solid #d6d9da!important}
+  body[data-page="home"] .mf-place-copy{border-top:1px solid rgba(255,255,255,.14)!important}
+
+  /* Vehicle catalogue mobile: keep editorial authority, not motorsport graphics */
+  body[data-page="vehiculos"] .page-hero-shell{border-bottom:3px solid var(--mfb-yellow)!important}
+  body[data-page="vehiculos"] .vehicle-card .badge{border-left:2px solid var(--mfb-yellow)!important}
+
+  /* Vehicle detail mobile: revert loud yellow framing, preserve one precise accent */
+  body[data-page="vehiculo"] .gallery-panel{
+    background:#111416!important;
+    border-top:0!important;
+    padding-top:34px!important;
+  }
+  body[data-page="vehiculo"] .gallery-panel>.kicker{
+    background:transparent!important;
+    color:rgba(255,255,255,.48)!important;
+    padding:0 0 0 10px!important;
+    border-left:3px solid var(--mfb-yellow)!important;
+  }
+  body[data-page="vehiculo"] .thumb-grid button.is-active{border-color:#fff!important}
+  body[data-page="vehiculo"] .detail-panel{border-top:2px solid var(--mfb-yellow)!important;background:#f4f5f3!important}
+  body[data-page="vehiculo"] .enquiry-card .primary{background:var(--mfb-ink)!important;border-color:var(--mfb-ink)!important;color:#fff!important}
+
+  /* Service pages: remove heavy yellow bars in mobile layouts */
+  body[data-page="taller"] .mfw-form-shell,
+  body[data-page="alquiler"] .mfr-form-shell,
+  body[data-page="contacto"] .mfc-form-shell{border-top-width:2px!important;border-top-color:rgba(255,255,255,.16)!important}
+}
