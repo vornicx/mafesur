@@ -1,1 +1,50 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f3f1eb"><title>Centro de gestión — Mafesur</title><meta name="description" content="Centro de gestión de stock y solicitudes de Mafesur."><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/enhancements.css"></head><body><div data-site-header></div><main class="page panel-layout"><section class="page-hero-shell"><div class="page-hero"><div class="reveal"><div class="kicker">Centro de gestión</div><h1>Stock, taller y solicitudes en un mismo lugar.</h1><p class="lead">Una vista operativa para controlar el inventario, atender contactos y organizar las oportunidades que llegan desde la web.</p></div><div class="meta-grid reveal"><div class="meta-card"><small>Stock</small><strong>Vehículos, precio, estado y publicación.</strong></div><div class="meta-card"><small>Taller</small><strong>Solicitudes con datos del vehículo y motivo.</strong></div><div class="meta-card"><small>Alquiler</small><strong>Consultas y disponibilidad.</strong></div><div class="meta-card"><small>Seguimiento</small><strong>Prioridad y estado de cada oportunidad.</strong></div></div></div></section><section class="section"><div class="container"><div class="panel-overview reveal"><div class="panel-box"><strong>42</strong><span>Inventario actual publicado en la web original.</span></div><div class="panel-box"><strong>12</strong><span>Solicitudes recientes de venta, taller o alquiler.</span></div><div class="panel-box"><strong>4</strong><span>Estados de seguimiento para priorizar atención.</span></div><div class="panel-box"><strong>1</strong><span>Vista única para simplificar la operación diaria.</span></div></div><div class="section-head reveal" style="margin-top:52px;margin-bottom:18px"><div class="copy"><div class="kicker">Inventario</div><h2>Vehículos.</h2></div></div><div class="panel-table" data-panel-vehicles></div><div class="section-head reveal" style="margin-top:52px;margin-bottom:18px"><div class="copy"><div class="kicker">Actividad reciente</div><h2>Solicitudes y oportunidades.</h2></div></div><div class="panel-table" data-panel-leads></div></div></section></main><div data-site-footer></div><script type="module" src="/js/site.js"></script></body></html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b0d0f">
+  <title>Centro de gestión — Mafesur</title>
+  <meta name="description" content="Vista operativa de inventario y solicitudes de Automóviles Mafesur.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/enhancements.css">
+</head>
+<body data-page="panel">
+  <div data-site-header></div>
+  <main class="page" data-panel-v4>
+    <section class="mfp-top">
+      <div class="container mfp-top-grid">
+        <div class="reveal"><span class="mfp-kicker">Centro de gestión</span><h1 class="mfp-title">Una vista para saber qué necesita atención.</h1><p>Inventario publicado, entradas de venta, taller y alquiler y una estructura preparada para centralizar el seguimiento sin convertir el día a día en otra herramienta complicada.</p></div>
+        <div class="mfp-status reveal"><div><span>Catálogo</span><strong class="live">Sincronizado</strong></div><div><span>Canales</span><strong>Venta · Taller · Alquiler</strong></div><div><span>Vista</span><strong>Operativa</strong></div></div>
+      </div>
+    </section>
+
+    <section class="mfp-body">
+      <div class="container">
+        <div class="mfp-metrics reveal">
+          <div class="mfp-metric"><small>Inventario</small><strong data-panel-inventory-count>—</strong><span>Vehículos disponibles desde el catálogo.</span></div>
+          <div class="mfp-metric"><small>Entradas</small><strong data-panel-lead-count>—</strong><span>Solicitudes representadas en esta vista.</span></div>
+          <div class="mfp-metric"><small>Áreas</small><strong>3</strong><span>Venta, taller y alquiler.</span></div>
+          <div class="mfp-metric"><small>Objetivo</small><strong>1</strong><span>Un único punto de seguimiento.</span></div>
+        </div>
+
+        <section class="mfp-section reveal">
+          <div class="mfp-section-head"><div><span class="mfp-kicker">Inventario</span><h2>Vehículos publicados</h2><p>Consulta rápida del catálogo actual y acceso a la ficha pública.</p></div><input class="mfp-search" type="search" data-panel-search placeholder="Buscar marca, modelo, combustible…" aria-label="Buscar vehículos"></div>
+          <div class="mfp-table-head"><span></span><span>Vehículo</span><span>Precio</span><span>Estado</span><span>Acción</span></div>
+          <div class="mfp-table" data-panel-v4-vehicles></div>
+        </section>
+
+        <section class="mfp-section reveal">
+          <div class="mfp-section-head"><div><span class="mfp-kicker">Actividad</span><h2>Solicitudes y oportunidades</h2><p>Ejemplo de cómo se ordenarían las entradas de la web antes de conectar persistencia y CRM.</p></div></div>
+          <div class="mfp-table-head"><span></span><span>Entrada</span><span>Estado</span><span>Área</span><span>Seguimiento</span></div>
+          <div class="mfp-table" data-panel-v4-leads></div>
+        </section>
+
+        <div class="mfp-note reveal"><strong>Estado de esta demo:</strong> el catálogo se alimenta con los vehículos sincronizados del proyecto. Las solicitudes mostradas son datos de demostración; la persistencia, usuarios y acciones de edición requieren la capa de backend del panel definitivo.</div>
+      </div>
+    </section>
+  </main>
+  <div data-site-footer></div>
+  <script type="module" src="/js/site.js"></script>
+</body>
+</html>
