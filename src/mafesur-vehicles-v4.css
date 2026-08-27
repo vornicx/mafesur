@@ -40,5 +40,34 @@ body[data-page="vehiculos"] .vehicle-actions{display:flex!important;gap:9px!impo
 body[data-page="vehiculos"] .vehicle-actions .button{flex:1;min-height:48px!important}
 body[data-page="vehiculos"] .vehicle-actions .dark{background:#0b0d0f!important;color:#fff!important;border-color:#0b0d0f!important}
 body[data-page="vehiculos"] .vehicle-actions .secondary-dark{background:#fff!important;color:#0b0d0f!important;border-color:#bfc4c8!important}
-@media(max-width:920px){body[data-page="vehiculos"] .mf-catalog-hero{grid-template-columns:1fr;gap:46px}.mf-catalog-notes{display:grid;grid-template-columns:repeat(3,1fr)}body[data-page="vehiculos"] .mf-catalog-note{padding:16px;border-right:1px solid rgba(255,255,255,.16)}body[data-page="vehiculos"] .mf-catalog-top{grid-template-columns:1fr;gap:24px}body[data-page="vehiculos"] .vehicle-grid{grid-template-columns:1fr!important}}
-@media(max-width:720px){body[data-page="vehiculos"] .page-hero-shell{padding-top:68px}body[data-page="vehiculos"] .mf-catalog-hero{width:calc(100% - 32px);padding:58px 0 48px}body[data-page="vehiculos"] .mf-catalog-hero h1{font-size:clamp(3rem,14vw,4.8rem)}body[data-page="vehiculos"] .mf-catalog-notes{grid-template-columns:1fr}.mf-catalog-note{padding:15px 0!important;border-right:0!important}body[data-page="vehiculos"] .mf-catalog-section{padding:64px 0 88px}body[data-page="vehiculos"] .catalog-controls{position:static;grid-template-columns:1fr}body[data-page="vehiculos"] .catalog-controls input,body[data-page="vehiculos"] .catalog-controls select{border-right:0!important;border-bottom:1px solid #dfe2e4!important}body[data-page="vehiculos"] .catalog-controls select:last-child{border-bottom:0!important}body[data-page="vehiculos"] .vehicle-grid{gap:44px!important}body[data-page="vehiculos"] .vehicle-card-media{aspect-ratio:1.22/1}body[data-page="vehiculos"] .vehicle-card-head{display:grid!important;grid-template-columns:1fr auto}body[data-page="vehiculos"] .vehicle-specs{grid-template-columns:1fr 1fr}body[data-page="vehiculos"] .vehicle-specs span:nth-child(2){border-right:0}body[data-page="vehiculos"] .vehicle-specs span:nth-child(-n+2){border-bottom:1px solid #e3e5e7}body[data-page="vehiculos"] .vehicle-actions{display:grid!important;grid-template-columns:1fr}.vehicle-actions .button{width:100%}}
+
+@media(max-width:920px){
+  body[data-page="vehiculos"] .mf-catalog-hero{grid-template-columns:1fr;gap:46px}
+  body[data-page="vehiculos"] .mf-catalog-notes{display:grid;grid-template-columns:repeat(3,1fr)}
+  body[data-page="vehiculos"] .mf-catalog-note{padding:16px;border-right:1px solid rgba(255,255,255,.16)}
+  body[data-page="vehiculos"] .mf-catalog-top{grid-template-columns:1fr;gap:24px}
+  body[data-page="vehiculos"] .vehicle-grid{grid-template-columns:1fr!important}
+}
+
+@media(max-width:720px){
+  body[data-page="vehiculos"] .page-hero-shell{padding-top:64px;border-bottom:6px solid #e2d51f}
+  body[data-page="vehiculos"] .mf-catalog-hero{width:calc(100% - 32px);padding:50px 0 42px;gap:34px}
+  body[data-page="vehiculos"] .mf-catalog-hero h1{font-size:clamp(3rem,14vw,4.8rem);line-height:.86}
+  body[data-page="vehiculos"] .mf-catalog-hero .lead{margin-top:21px;font-size:.92rem;line-height:1.62;color:rgba(255,255,255,.66)}
+  body[data-page="vehiculos"] .mf-catalog-notes{grid-template-columns:1fr}
+  body[data-page="vehiculos"] .mf-catalog-note{padding:14px 0!important;border-right:0!important}
+  body[data-page="vehiculos"] .mf-catalog-note small{color:#e2d51f}
+  body[data-page="vehiculos"] .mf-catalog-section{padding:60px 0 88px}
+  body[data-page="vehiculos"] .catalog-controls{position:static;grid-template-columns:1fr}
+  body[data-page="vehiculos"] .catalog-controls input,body[data-page="vehiculos"] .catalog-controls select{border-right:0!important;border-bottom:1px solid #dfe2e4!important}
+  body[data-page="vehiculos"] .catalog-controls select:last-child{border-bottom:0!important}
+  body[data-page="vehiculos"] .vehicle-grid{gap:44px!important}
+  body[data-page="vehiculos"] .vehicle-card-media{aspect-ratio:1.22/1}
+  body[data-page="vehiculos"] .vehicle-card .badge{background:#e2d51f;color:#0b0d0f}
+  body[data-page="vehiculos"] .vehicle-card-head{display:grid!important;grid-template-columns:1fr auto}
+  body[data-page="vehiculos"] .vehicle-specs{grid-template-columns:1fr 1fr}
+  body[data-page="vehiculos"] .vehicle-specs span:nth-child(2){border-right:0}
+  body[data-page="vehiculos"] .vehicle-specs span:nth-child(-n+2){border-bottom:1px solid #e3e5e7}
+  body[data-page="vehiculos"] .vehicle-actions{display:grid!important;grid-template-columns:1fr}
+  body[data-page="vehiculos"] .vehicle-actions .button{width:100%}
+}
