@@ -1,0 +1,67 @@
+/* Mafesur Contact v4 — direct, local, useful */
+body[data-page="contacto"]{--mfc-ink:#0b0d0f;--mfc-paper:#fff;--mfc-soft:#f3f4f2;--mfc-line:#d9dddf;--mfc-muted:#626970;--mfc-yellow:#e2d51f;background:#fff;color:var(--mfc-ink)}
+body[data-page="contacto"] .page{overflow:hidden;background:#fff}
+body[data-page="contacto"] .container{width:min(1380px,calc(100% - 64px));margin-inline:auto}
+body[data-page="contacto"] .mfc-kicker{display:block;margin-bottom:16px;font-size:.67rem;font-weight:850;letter-spacing:.16em;text-transform:uppercase;color:var(--mfc-muted)}
+body[data-page="contacto"] .mfc-title{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:clamp(3rem,5.3vw,6rem);font-weight:650;line-height:.9;letter-spacing:-.07em}
+body[data-page="contacto"] .mfc-copy{font-size:1rem;line-height:1.72;color:var(--mfc-muted)}
+
+body[data-page="contacto"] .mfc-hero{padding-top:78px;background:var(--mfc-ink);color:#fff}
+body[data-page="contacto"] .mfc-hero-grid{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(420px,.78fr);min-height:720px}
+body[data-page="contacto"] .mfc-hero-media{position:relative;min-height:720px;overflow:hidden;background:#171b1e}
+body[data-page="contacto"] .mfc-hero-media img{width:100%;height:100%;object-fit:cover;filter:saturate(.97) contrast(1.04)}
+body[data-page="contacto"] .mfc-hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,rgba(5,7,8,.74) 100%)}
+body[data-page="contacto"] .mfc-location-badge{position:absolute;z-index:2;left:30px;bottom:28px;padding:9px 11px;background:var(--mfc-yellow);color:var(--mfc-ink);font-size:.6rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+body[data-page="contacto"] .mfc-hero-copy{display:flex;flex-direction:column;justify-content:center;padding:82px clamp(42px,6vw,94px);border-left:1px solid rgba(255,255,255,.12)}
+body[data-page="contacto"] .mfc-hero-copy .mfc-kicker{color:var(--mfc-yellow)}
+body[data-page="contacto"] .mfc-hero h1{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:clamp(3.7rem,5.8vw,6.7rem);font-weight:650;line-height:.87;letter-spacing:-.078em}
+body[data-page="contacto"] .mfc-hero h1 span{display:block;color:var(--mfc-yellow)}
+body[data-page="contacto"] .mfc-hero-copy>p{margin:28px 0 0;color:rgba(255,255,255,.64);font-size:1.01rem;line-height:1.7}
+body[data-page="contacto"] .mfc-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:34px}
+body[data-page="contacto"] .mfc-actions .button{min-height:50px;justify-content:center}
+body[data-page="contacto"] .mfc-actions .button.primary{background:var(--mfc-yellow);border-color:var(--mfc-yellow);color:var(--mfc-ink)}
+body[data-page="contacto"] .mfc-actions .button.secondary{border-color:rgba(255,255,255,.28);color:#fff}
+body[data-page="contacto"] .mfc-hero-meta{margin-top:44px;border-top:1px solid rgba(255,255,255,.14)}
+body[data-page="contacto"] .mfc-hero-meta div{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+body[data-page="contacto"] .mfc-hero-meta small{font-size:.58rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.36)}
+body[data-page="contacto"] .mfc-hero-meta strong{font-size:.8rem;color:#fff;text-align:right}
+
+body[data-page="contacto"] .mfc-details{padding:112px 0;background:#fff}
+body[data-page="contacto"] .mfc-details-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:90px;align-items:start}
+body[data-page="contacto"] .mfc-details-copy{position:sticky;top:110px}
+body[data-page="contacto"] .mfc-details-copy .mfc-title{font-size:clamp(3rem,4.7vw,5.1rem)}
+body[data-page="contacto"] .mfc-details-copy .mfc-copy{margin-top:24px}
+body[data-page="contacto"] .mfc-detail-list{border-top:2px solid var(--mfc-ink)}
+body[data-page="contacto"] .mfc-detail-row{display:grid;grid-template-columns:150px 1fr auto;gap:24px;align-items:start;padding:24px 0;border-bottom:1px solid var(--mfc-line)}
+body[data-page="contacto"] .mfc-detail-row small{font-size:.61rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase;color:#8a9196;padding-top:5px}
+body[data-page="contacto"] .mfc-detail-row strong,body[data-page="contacto"] .mfc-detail-row a{font-size:1rem;line-height:1.55;color:var(--mfc-ink);text-decoration:none;font-weight:650}
+body[data-page="contacto"] .mfc-detail-row i{display:grid;place-items:center;width:36px;height:36px;background:var(--mfc-yellow);font-style:normal}
+
+body[data-page="contacto"] .mfc-form-section{padding:112px 0;background:var(--mfc-soft)}
+body[data-page="contacto"] .mfc-form-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:90px;align-items:start}
+body[data-page="contacto"] .mfc-form-copy .mfc-title{font-size:clamp(3rem,4.6vw,5rem)}
+body[data-page="contacto"] .mfc-form-copy .mfc-copy{margin-top:24px}
+body[data-page="contacto"] .mfc-form-copy .mfc-note{margin-top:28px;padding-top:18px;border-top:2px solid var(--mfc-ink);font-size:.8rem;line-height:1.58;color:var(--mfc-muted)}
+body[data-page="contacto"] .mfc-form-shell{padding:42px;background:#fff;border-top:6px solid var(--mfc-yellow)}
+body[data-page="contacto"] .mfc-form-intro{display:flex;justify-content:space-between;gap:30px;margin-bottom:30px}
+body[data-page="contacto"] .mfc-form-intro h2{margin:0;font-size:2.25rem;font-weight:650;letter-spacing:-.045em}
+body[data-page="contacto"] .mfc-form-intro p{max-width:390px;margin:2px 0 0;font-size:.82rem;line-height:1.6;color:var(--mfc-muted)}
+body[data-page="contacto"] .mfc-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+body[data-page="contacto"] .mfc-field{display:flex;flex-direction:column;gap:7px}.mfc-field.full{grid-column:1/-1}
+body[data-page="contacto"] .mfc-field label{font-size:.59rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase;color:#747b80}
+body[data-page="contacto"] .mfc-field input,body[data-page="contacto"] .mfc-field select,body[data-page="contacto"] .mfc-field textarea{width:100%;min-height:52px;border:1px solid #cfd3d4;border-radius:0;background:#fff;color:var(--mfc-ink);padding:14px 15px;font:inherit;font-size:.88rem;outline:none}
+body[data-page="contacto"] .mfc-field textarea{min-height:120px;resize:vertical}
+body[data-page="contacto"] .mfc-field input:focus,body[data-page="contacto"] .mfc-field select:focus,body[data-page="contacto"] .mfc-field textarea:focus{border-color:#978d00;box-shadow:0 0 0 1px #978d00}
+body[data-page="contacto"] .mfc-form-actions{grid-column:1/-1;display:grid;grid-template-columns:1fr auto;gap:9px;margin-top:7px}.mfc-form-actions .button{min-height:52px;justify-content:center}.mfc-form-actions .button.primary{background:var(--mfc-ink);border-color:var(--mfc-ink);color:#fff}
+body[data-page="contacto"] .mfc-form-note{grid-column:1/-1;margin:2px 0 0;font-size:.69rem;line-height:1.5;color:#858b90}
+
+body[data-page="contacto"] .mfc-final{padding:0;background:var(--mfc-yellow)}
+body[data-page="contacto"] .mfc-final-grid{display:grid;grid-template-columns:1.12fr .88fr;min-height:430px}
+body[data-page="contacto"] .mfc-final-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(44px,5vw,76px)}
+body[data-page="contacto"] .mfc-final-copy .mfc-kicker{color:#5d5700}.mfc-final-copy .mfc-title{font-size:clamp(2.7rem,4.2vw,4.7rem)}
+body[data-page="contacto"] .mfc-final-copy p{margin:20px 0 0;color:rgba(11,13,15,.7)}
+body[data-page="contacto"] .mfc-final-actions{display:flex;align-items:center;justify-content:center;padding:44px;border-left:1px solid rgba(11,13,15,.18)}
+body[data-page="contacto"] .mfc-final-actions .button{background:var(--mfc-ink);border-color:var(--mfc-ink);color:#fff;min-width:230px;justify-content:center}
+
+@media(max-width:1100px){body[data-page="contacto"] .mfc-hero-grid{grid-template-columns:1fr}.mfc-hero-media{min-height:560px}.mfc-hero-copy{border-left:0!important;border-top:1px solid rgba(255,255,255,.12)}body[data-page="contacto"] .mfc-details-grid,body[data-page="contacto"] .mfc-form-grid{grid-template-columns:1fr;gap:44px}.mfc-details-copy{position:static!important}.mfc-final-grid{grid-template-columns:1fr!important}.mfc-final-actions{border-left:0!important;border-top:1px solid rgba(11,13,15,.18)}}
+@media(max-width:720px){body[data-page="contacto"] .container{width:calc(100% - 28px)}body[data-page="contacto"] .mfc-hero{padding-top:62px}.mfc-hero-grid{display:flex;flex-direction:column}.mfc-hero-media{order:1;height:55svh;max-height:590px;min-height:0}.mfc-location-badge{left:16px;bottom:16px}.mfc-hero-copy{order:2;padding:34px 18px 38px!important;border:0!important;border-top:6px solid var(--mfc-yellow)!important}.mfc-hero-copy .mfc-kicker{display:none}.mfc-hero h1{font-size:clamp(3rem,14vw,4.05rem);line-height:.86}.mfc-hero-copy>p{margin-top:21px;font-size:.93rem;line-height:1.62}.mfc-actions{grid-template-columns:1fr;gap:8px;margin-top:25px}.mfc-hero-meta{margin-top:30px}.mfc-hero-meta div{display:grid;grid-template-columns:90px 1fr;gap:12px}.mfc-hero-meta strong{text-align:left!important}.mfc-title{font-size:clamp(2.55rem,12vw,3.65rem)}.mfc-copy{font-size:.92rem;line-height:1.65}.mfc-details{padding:72px 0}.mfc-details-copy .mfc-title{font-size:2.85rem}.mfc-detail-row{grid-template-columns:90px 1fr 30px;gap:12px;padding:20px 0}.mfc-detail-row strong,.mfc-detail-row a{font-size:.9rem}.mfc-detail-row i{width:30px;height:30px}.mfc-form-section{padding:72px 0}.mfc-form-copy .mfc-title{font-size:2.8rem}.mfc-form-shell{margin-inline:-14px;padding:30px 18px 32px}.mfc-form-intro{display:block;margin-bottom:25px}.mfc-form-intro h2{font-size:1.95rem}.mfc-form-intro p{margin-top:12px}.mfc-form{grid-template-columns:1fr}.mfc-field.full{grid-column:auto}.mfc-form-actions{grid-column:auto;grid-template-columns:1fr}.mfc-form-actions .button{width:100%}.mfc-form-note{grid-column:auto}.mfc-final-grid{display:flex!important;flex-direction:column;min-height:0}.mfc-final-copy{padding:42px 18px}.mfc-final-copy .mfc-title{font-size:2.75rem}.mfc-final-actions{padding:0 18px 46px!important;border:0!important}.mfc-final-actions .button{width:100%;min-width:0}}
