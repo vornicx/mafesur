@@ -38,9 +38,20 @@ rentalV4Styles.rel = 'stylesheet';
 rentalV4Styles.href = '/mafesur-rental-v4.css';
 document.head.appendChild(rentalV4Styles);
 
+const aboutV4Styles = document.createElement('link');
+aboutV4Styles.rel = 'stylesheet';
+aboutV4Styles.href = '/mafesur-about-v4.css';
+document.head.appendChild(aboutV4Styles);
+
+const contactV4Styles = document.createElement('link');
+contactV4Styles.rel = 'stylesheet';
+contactV4Styles.href = '/mafesur-contact-v4.css';
+document.head.appendChild(contactV4Styles);
+
 await import('./app.js');
 await import('./enhancements.js');
 await import('./catalog-experience.js');
 await import('./precision-v3.js');
 await import('./workshop-v4.js');
 await import('./rental-v4.js');
+await import('./contact-v4.js');
